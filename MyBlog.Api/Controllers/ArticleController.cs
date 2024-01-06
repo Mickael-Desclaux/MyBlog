@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyBlog.Api.Models;
+using MyBlog.Api.Models.Repositories;
 
 namespace MyBlog.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ArticleController
+public class ArticleController : ControllerBase
 {
     [HttpGet]
     public string Get()
@@ -14,9 +15,15 @@ public class ArticleController
     }
 
     [HttpGet("{id:int}")]
-    public string GetById(int id)
+    public ActionResult<Article> GetById(int id)
     {
-        return $"Getting article with ID : {id}";
+        var article = ArticleRepository.GetArticleById(id);
+        if (article == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(article);
     }
 
     [HttpPost]
