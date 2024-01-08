@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyBlog.Api.Filters;
 using MyBlog.Api.Models;
 using MyBlog.Api.Models.Repositories;
 
@@ -15,15 +16,10 @@ public class ArticleController : ControllerBase
     }
 
     [HttpGet("{id:int}")]
+    [ArticleValidateIdFilter]
     public ActionResult<Article> GetById(int id)
     {
-        var article = ArticleRepository.GetArticleById(id);
-        if (article == null)
-        {
-            return NotFound();
-        }
-
-        return Ok(article);
+        return Ok(ArticleRepository.GetArticleById(id));
     }
 
     [HttpPost]
