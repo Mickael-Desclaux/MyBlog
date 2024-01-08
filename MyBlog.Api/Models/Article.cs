@@ -4,7 +4,7 @@ public class Article
 {
     public int ArticleId { get; set; }
     
-    public int TagID { get; set; }
+    public int TagId { get; set; }
     
     public string? BookCover { get; set; }
     

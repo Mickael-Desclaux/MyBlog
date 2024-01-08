@@ -9,10 +9,10 @@ namespace MyBlog.Api.Controllers;
 [Route("api/[controller]")]
 public class ArticleController : ControllerBase
 {
-    [HttpGet]
-    public string Get()
+    [HttpGet("all")]
+    public ActionResult<Article> Get()
     {
-        return "Getting all the articles";
+        return Ok(ArticleRepository.GetArticles());
     }
 
     [HttpGet("{id:int}")]
@@ -23,9 +23,12 @@ public class ArticleController : ControllerBase
     }
 
     [HttpPost]
-    public string Create([FromForm]Article article)
+    [ArticleValidateCreateFilter]
+    public ActionResult<Article> Create([FromBody]Article article)
     {
-        return "Creating a article";
+        ArticleRepository.AddArticle(article);
+        
+        return CreatedAtAction(nameof(GetById), new {id = article.ArticleId}, article);
     }
 
     [HttpPut("{id:int}")]
