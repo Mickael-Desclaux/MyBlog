@@ -35,6 +35,8 @@ public static class ArticleRepository
     {
         int maxId = _articles.Max(x => x.ArticleId);
         article.ArticleId = maxId + 1;
+        article.CreatedAt = DateTime.Now;
+        article.UpdatedAt = DateTime.Now;
         
         _articles.Add(article);
     }
@@ -48,8 +50,7 @@ public static class ArticleRepository
         articleToUpdate.ReviewResume = article.ReviewResume;
         articleToUpdate.MyNote = article.MyNote;
         articleToUpdate.Quotes = article.Quotes;
-        articleToUpdate.CreatedAt = article.CreatedAt;
-        articleToUpdate.UpdatedAt = article.UpdatedAt;
+        articleToUpdate.UpdatedAt = DateTime.Now;
     }
 
     public static void DeleteArticle(int articleId)
