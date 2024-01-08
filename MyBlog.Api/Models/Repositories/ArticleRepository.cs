@@ -50,6 +50,14 @@ public static class ArticleRepository
         articleToUpdate.Quotes = article.Quotes;
         articleToUpdate.CreatedAt = article.CreatedAt;
         articleToUpdate.UpdatedAt = article.UpdatedAt;
-        
+    }
+
+    public static void DeleteArticle(int articleId)
+    {
+        var article = GetArticleById(articleId);
+        if (article != null)
+        {
+            _articles.Remove(article);
+        }
     }
 }

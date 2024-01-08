@@ -44,8 +44,12 @@ public class ArticleController : ControllerBase
     }
 
     [HttpDelete("{id:int}")]
-    public string Delete(int id)
+    [ArticleValidateIdFilter]
+    public ActionResult<Article> Delete(int id)
     {
-        return $"Deleting article with id: {id}";
+        var article = ArticleRepository.GetArticleById(id);
+        ArticleRepository.DeleteArticle(id);
+        
+        return Ok(article);
     }
 }
