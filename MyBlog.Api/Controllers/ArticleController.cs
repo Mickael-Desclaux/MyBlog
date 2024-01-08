@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyBlog.Api.Filters;
+using MyBlog.Api.Filters.ExceptionFilters;
 using MyBlog.Api.Models;
 using MyBlog.Api.Models.Repositories;
 
@@ -24,17 +25,22 @@ public class ArticleController : ControllerBase
 
     [HttpPost]
     [ArticleValidateCreateFilter]
-    public ActionResult<Article> Create([FromBody]Article article)
+    public ActionResult<Article> Create([FromBody] Article article)
     {
         ArticleRepository.AddArticle(article);
-        
-        return CreatedAtAction(nameof(GetById), new {id = article.ArticleId}, article);
+
+        return CreatedAtAction(nameof(GetById), new { id = article.ArticleId }, article);
     }
 
     [HttpPut("{id:int}")]
-    public string Update(int id)
+    [ArticleValidateIdFilter]
+    [ArticleValidateUpdateFilter]
+    [ArticleHandleUpdateExceptionsFilter]
+    public ActionResult<Article> Update(int id, Article article)
     {
-        return $"Updating article with id : {id}";
+        ArticleRepository.UpdateArticle(article);
+
+        return NoContent();
     }
 
     [HttpDelete("{id:int}")]

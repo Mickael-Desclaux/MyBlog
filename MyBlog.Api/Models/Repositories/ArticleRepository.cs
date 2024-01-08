@@ -38,4 +38,18 @@ public static class ArticleRepository
         
         _articles.Add(article);
     }
+
+    public static void UpdateArticle(Article article)
+    {
+        var articleToUpdate = _articles.First(x => x.ArticleId == article.ArticleId);
+        articleToUpdate.TagId = article.TagId;
+        articleToUpdate.BookCover = article.BookCover;
+        articleToUpdate.TextSection = article.TextSection;
+        articleToUpdate.ReviewResume = article.ReviewResume;
+        articleToUpdate.MyNote = article.MyNote;
+        articleToUpdate.Quotes = article.Quotes;
+        articleToUpdate.CreatedAt = article.CreatedAt;
+        articleToUpdate.UpdatedAt = article.UpdatedAt;
+        
+    }
 }
