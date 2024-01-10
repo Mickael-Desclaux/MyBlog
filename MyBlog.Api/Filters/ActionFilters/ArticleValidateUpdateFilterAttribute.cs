@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using MyBlog.Api.Models;
 
-namespace MyBlog.Api.Filters;
+namespace MyBlog.Api.Filters.ActionFilters;
 
 public class ArticleValidateUpdateFilterAttribute: ActionFilterAttribute
 {

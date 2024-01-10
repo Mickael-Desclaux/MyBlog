@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBlog.Api.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyBlog.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240110131649_Reset Article Table")]
+    partial class ResetArticleTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,38 +34,8 @@ namespace MyBlog.Api.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ArticleId"));
 
-                    b.Property<string>("BookAuthor")
-                        .HasColumnType("text");
-
-                    b.Property<string>("BookCover")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("BookNumberOfPages")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("BookTitle")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<float?>("MyNote")
-                        .HasColumnType("real");
-
-                    b.Property<List<string>>("Quotes")
-                        .HasColumnType("text[]");
-
-                    b.Property<string>("ReviewResume")
-                        .HasColumnType("text");
-
                     b.Property<List<int?>>("TagIds")
                         .HasColumnType("integer[]");
-
-                    b.Property<string>("TextSection")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("ArticleId");
 

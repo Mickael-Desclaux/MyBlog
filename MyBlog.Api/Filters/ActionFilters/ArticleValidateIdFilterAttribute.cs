@@ -1,11 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using MyBlog.Api.Data;
 using MyBlog.Api.Models.Repositories;
 
-namespace MyBlog.Api.Filters;
+namespace MyBlog.Api.Filters.ActionFilters;
 
-public class ArticleValidateIdFilterAttribute: ActionFilterAttribute
+public class ArticleValidateIdFilterAttribute : ActionFilterAttribute
 {
+    private readonly ApplicationDbContext _db;
+
+    public ArticleValidateIdFilterAttribute(ApplicationDbContext db)
+    {
+        this._db = db;
+    }
+
     public override void OnActionExecuting(ActionExecutingContext context)
     {
         base.OnActionExecuting(context);
@@ -22,14 +30,23 @@ public class ArticleValidateIdFilterAttribute: ActionFilterAttribute
                 };
                 context.Result = new BadRequestObjectResult(problemDetails);
             }
-            else if (!ArticleRepository.ArticleExists(articleId.Value))
+            else
             {
-                context.ModelState.AddModelError("ArticleId", "Article doesn't exist");
-                var problemDetails = new ValidationProblemDetails(context.ModelState)
+                var article = _db.Articles.Find(articleId.Value);
+
+                if (article == null)
                 {
-                    Status = StatusCodes.Status404NotFound
-                };
-                context.Result = new NotFoundObjectResult(problemDetails);
+                    context.ModelState.AddModelError("ArticleId", "Article doesn't exist");
+                    var problemDetails = new ValidationProblemDetails(context.ModelState)
+                    {
+                        Status = StatusCodes.Status404NotFound
+                    };
+                    context.Result = new NotFoundObjectResult(problemDetails);
+                }
+                else
+                {
+                    context.HttpContext.Items["article"] = article;
+                }
             }
         }
     }

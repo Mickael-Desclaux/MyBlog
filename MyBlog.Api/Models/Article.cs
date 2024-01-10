@@ -3,8 +3,14 @@
 public class Article
 {
     public int ArticleId { get; set; }
+
+    public List<int?>? TagIds { get; set; }
+
+    public string? BookAuthor { get; set; }
     
-    public int TagId { get; set; }
+    public string? BookTitle { get; set; }
+    
+    public int? BookNumberOfPages { get; set; }
     
     public string? BookCover { get; set; }
     

@@ -6,12 +6,12 @@ public static class ArticleRepository
     {
         new Article
         {
-            ArticleId = 1, TagId = 1, BookCover = "dddd", TextSection = "hfdgbhgdf dfgihdfg", ReviewResume = "ikjfgdnf",
+            ArticleId = 1, TagIds = [1, 2], BookAuthor = "test", BookTitle = "Test", BookNumberOfPages = 400, BookCover = "dddd", TextSection = "hfdgbhgdf dfgihdfg", ReviewResume = "ikjfgdnf",
             MyNote = 5, Quotes = ["dfgdfg", "dfgdfg"]
         },
         new Article
         {
-            ArticleId = 2, TagId = 1, BookCover = "ddddghg", TextSection = "hfhgdgbhgdf dfgihdfg", ReviewResume = "ikjfgddgnf",
+            ArticleId = 2, TagIds = [1, 2], BookAuthor = "test", BookTitle = "Test", BookNumberOfPages = 400, BookCover = "ddddghg", TextSection = "hfhgdgbhgdf dfgihdfg", ReviewResume = "ikjfgddgnf",
             MyNote = 4, Quotes = ["dfgdfffg", "dfgdfgff"]
         }
     };
@@ -44,8 +44,11 @@ public static class ArticleRepository
     public static void UpdateArticle(Article article)
     {
         var articleToUpdate = _articles.First(x => x.ArticleId == article.ArticleId);
-        articleToUpdate.TagId = article.TagId;
+        articleToUpdate.TagIds = article.TagIds;
         articleToUpdate.BookCover = article.BookCover;
+        articleToUpdate.BookAuthor = article.BookAuthor;
+        articleToUpdate.BookTitle = article.BookTitle;
+        articleToUpdate.BookNumberOfPages = article.BookNumberOfPages;
         articleToUpdate.TextSection = article.TextSection;
         articleToUpdate.ReviewResume = article.ReviewResume;
         articleToUpdate.MyNote = article.MyNote;
