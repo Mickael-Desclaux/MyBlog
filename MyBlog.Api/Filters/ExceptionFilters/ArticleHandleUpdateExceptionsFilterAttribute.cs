@@ -6,11 +6,11 @@ namespace MyBlog.Api.Filters.ExceptionFilters;
 
 public class ArticleHandleUpdateExceptionsFilterAttribute : ExceptionFilterAttribute
 {
-    private readonly ApplicationDbContext _db;
+    private readonly ApplicationDbContext _dbContext;
     
-    public ArticleHandleUpdateExceptionsFilterAttribute(ApplicationDbContext db)
+    public ArticleHandleUpdateExceptionsFilterAttribute(ApplicationDbContext dbContext)
     {
-        _db = db;
+        _dbContext = dbContext;
     }
     public override void OnException(ExceptionContext context)
     {
@@ -19,7 +19,7 @@ public class ArticleHandleUpdateExceptionsFilterAttribute : ExceptionFilterAttri
         var strArticleId = context.RouteData.Values["id"] as string;
         if (int.TryParse(strArticleId, out int articleId))
         {
-            if (_db.Articles.FirstOrDefault(x => x.ArticleId == articleId) == null)
+            if (_dbContext.Articles.FirstOrDefault(x => x.ArticleId == articleId) == null)
             {
                 context.ModelState.AddModelError("ArticleId", "Article doesn't exist anymore");
                 var problemDetails = new ValidationProblemDetails(context.ModelState)

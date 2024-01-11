@@ -3,7 +3,6 @@ using MyBlog.Api.Data;
 using MyBlog.Api.Filters.ActionFilters;
 using MyBlog.Api.Filters.ExceptionFilters;
 using MyBlog.Api.Models;
-using MyBlog.Api.Models.Repositories;
 
 namespace MyBlog.Api.Controllers;
 
@@ -11,17 +10,17 @@ namespace MyBlog.Api.Controllers;
 [Route("api/[controller]")]
 public class ArticleController : ControllerBase
 {
-    private readonly ApplicationDbContext _db;
+    private readonly ApplicationDbContext _dbContext;
     
-    public ArticleController(ApplicationDbContext db)
+    public ArticleController(ApplicationDbContext dbContext)
     {
-        _db = db;
+        _dbContext = dbContext;
     }
     
-    [HttpGet("all")]
+    [HttpGet]
     public ActionResult<Article> Get()
     {
-        return Ok(_db.Articles.ToList());
+        return Ok(_dbContext.Articles);
     }
 
     [HttpGet("{id:int}")]
@@ -36,9 +35,9 @@ public class ArticleController : ControllerBase
     public ActionResult<Article> Create([FromBody] Article article)
     {
         article.CreatedAt = DateTime.UtcNow;
-        article.UpdatedAt = DateTime.UtcNow;
-        _db.Articles.Add(article);
-        _db.SaveChanges();
+        article.UpdatedAt = article.CreatedAt;
+        _dbContext.Articles.Add(article);
+        _dbContext.SaveChanges();
 
         return CreatedAtAction(nameof(GetById), new { id = article.ArticleId }, article);
     }
@@ -56,12 +55,13 @@ public class ArticleController : ControllerBase
         articleToUpdate.BookTitle = article.BookTitle;
         articleToUpdate.BookNumberOfPages = article.BookNumberOfPages;
         articleToUpdate.TextSection = article.TextSection;
+        articleToUpdate.BookResume = article.BookResume;
         articleToUpdate.ReviewResume = article.ReviewResume;
         articleToUpdate.MyNote = article.MyNote;
         articleToUpdate.Quotes = article.Quotes;
         articleToUpdate.UpdatedAt = DateTime.UtcNow;
 
-        _db.SaveChanges();
+        _dbContext.SaveChanges();
 
         return NoContent();
     }
@@ -72,8 +72,8 @@ public class ArticleController : ControllerBase
     {
         var articleToDelete = HttpContext.Items["article"] as Article;
 
-        _db.Articles.Remove(articleToDelete);
-        _db.SaveChanges();
+        _dbContext.Articles.Remove(articleToDelete);
+        _dbContext.SaveChanges();
         
         return Ok(articleToDelete);
     }

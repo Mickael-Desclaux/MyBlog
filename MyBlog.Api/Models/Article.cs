@@ -16,6 +16,8 @@ public class Article
     
     public string? TextSection { get; set; }
     
+    public string? BookResume { get; set; }
+    
     public string? ReviewResume { get; set; }
     
     public float? MyNote { get; set; }

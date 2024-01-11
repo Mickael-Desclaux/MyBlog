@@ -7,11 +7,11 @@ namespace MyBlog.Api.Filters.ActionFilters;
 
 public class ArticleValidateIdFilterAttribute : ActionFilterAttribute
 {
-    private readonly ApplicationDbContext _db;
+    private readonly ApplicationDbContext _dbContext;
 
-    public ArticleValidateIdFilterAttribute(ApplicationDbContext db)
+    public ArticleValidateIdFilterAttribute(ApplicationDbContext dbContext)
     {
-        this._db = db;
+        this._dbContext = dbContext;
     }
 
     public override void OnActionExecuting(ActionExecutingContext context)
@@ -32,7 +32,7 @@ public class ArticleValidateIdFilterAttribute : ActionFilterAttribute
             }
             else
             {
-                var article = _db.Articles.Find(articleId.Value);
+                var article = _dbContext.Articles.Find(articleId.Value);
 
                 if (article == null)
                 {
