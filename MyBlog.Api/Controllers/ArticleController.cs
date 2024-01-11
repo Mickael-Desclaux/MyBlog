@@ -18,7 +18,7 @@ public class ArticleController : ControllerBase
     }
     
     [HttpGet]
-    public ActionResult<Article> Get()
+    public ActionResult<List<Article>> Get()
     {
         return Ok(_dbContext.Articles);
     }
