@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlog.Api", "MyBlog.Api\MyBlog.Api.csproj", "{B2926C2F-30C9-4C9B-BF79-5812CCD18177}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlog.App", "MyBlog.App\MyBlog.App.csproj", "{E31280E3-0540-40AD-B879-9B0A9E9CFD92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{B2926C2F-30C9-4C9B-BF79-5812CCD18177}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2926C2F-30C9-4C9B-BF79-5812CCD18177}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2926C2F-30C9-4C9B-BF79-5812CCD18177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E31280E3-0540-40AD-B879-9B0A9E9CFD92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E31280E3-0540-40AD-B879-9B0A9E9CFD92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E31280E3-0540-40AD-B879-9B0A9E9CFD92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E31280E3-0540-40AD-B879-9B0A9E9CFD92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
