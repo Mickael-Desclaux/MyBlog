@@ -1,12 +1,12 @@
 ﻿@page "/Articles"
-@inherits ArticlesBase
+@inherits MyBlog.WebApp.Components.Pages.ComponentsBase.ArticlesBase
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
+
 <h1>Articles</h1>
 <table>
     <thead>
     <tr>
         <td>ArticleId</td>
-        <td>TagIds</td>
         <td>BookAuthor</td>
         <td>BookTitle</td>
         <td>BookNumberOfPages</td>
@@ -21,11 +21,10 @@
     </tr>
     </thead>
     <tbody>
-    @foreach (var article in Article)
+    @foreach (var article in Articles)
     {
         <tr>
             <td>@article.ArticleId</td>
-            <td>@article.TagIds</td>
             <td>@article.BookAuthor</td>
             <td>@article.BookTitle</td>
             <td>@article.BookNumberOfPages</td>
@@ -34,10 +33,24 @@
             <td>@article.BookResume</td>
             <td>@article.ReviewResume</td>
             <td>@article.MyNote</td>
-            <td>@article.Quotes</td>
+            <td>
+                @if (article.Quotes != null)
+                {
+                    foreach (var quote in article.Quotes)
+                    {
+                        <p>@quote</p>
+                    }
+                }
+            </td>
             <td>@article.CreatedAt</td>
             <td>@article.UpdatedAt</td>
+            <td>
+                <button @onclick="() => OnDeleteArticle(article.ArticleId)">Delete</button>
+            </td>
         </tr>
     }
     </tbody>
 </table>
+<button>
+    <a href="/CreateArticle" asp-controller="article" asp-action="CreateArticle">Add Article</a>
+</button>

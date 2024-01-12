@@ -2,6 +2,11 @@
 
 public class Article
 {
+    public Article()
+    {
+        Quotes = new List<string?>();
+    }
+
     public int ArticleId { get; set; }
 
     public List<int?>? TagIds { get; set; }

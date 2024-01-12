@@ -13,5 +13,16 @@ public class ArticleService(HttpClient httpClient)
         return articles ?? new List<Article>();
     }
     
+    public async Task CreateArticleAsync(Article article)
+    {
+        var response = await httpClient.PostAsJsonAsync("article", article);
+        response.EnsureSuccessStatusCode();
+    }
+
+    public async Task DeleteArticleAsync(int articleId)
+    {
+        var response = await httpClient.DeleteAsync($"article/{articleId}");
+        response.EnsureSuccessStatusCode();
+    }
     //Add CRUD operations here
 }
