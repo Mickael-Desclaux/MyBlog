@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.ResponseCompression;
 using MyBlog.WebApp.Components;
 using MyBlog.WebApp.Services;

@@ -1,10 +1,10 @@
-﻿@page "/CreateArticle"
-@inherits MyBlog.WebApp.Components.Pages.ComponentsBase.CreateArticleBase
+﻿@page "/EditArticle/{ArticleId:int?}"
+@inherits MyBlog.WebApp.Components.Pages.ComponentsBase.EditArticleBase
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
 
-<h3>Post an article</h3>
+<h3>Edit an article</h3>
 
-<EditForm Model="@Article" OnValidSubmit="HandleValidSubmit" FormName="articleForm">
+<EditForm Model="@Article" OnValidSubmit="EditArticle" FormName="articleForm">
     <InputText id="bookTitle" @bind-Value="Article.BookTitle"/><br>
     <InputText id="bookAuthor" @bind-Value="Article.BookAuthor"/><br>
     <InputText id="bookCover" @bind-Value="Article.BookCover"/><br>
@@ -27,5 +27,5 @@
     <InputText id="newQuote" @bind-Value="NewQuote"/>
     <button @onclick="AddQuote">Add a new quote</button><br/>
 
-    <button type="submit">Create</button>
+    <button type="submit">Update</button>
 </EditForm>

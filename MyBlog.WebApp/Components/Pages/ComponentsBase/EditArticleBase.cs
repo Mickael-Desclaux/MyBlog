@@ -4,24 +4,21 @@ using MyBlog.WebApp.Services;
 
 namespace MyBlog.WebApp.Components.Pages.ComponentsBase;
 
-public class CreateArticleBase : ComponentBase
+public class EditArticleBase : ComponentBase
 {
     #region Statement
 
     [Inject] private ArticleService ArticleService { get; init; } = default!;
     
-    protected Article Article = new();
-    
     protected string NewQuote = string.Empty;
+    
+    public static Article Article = new();
+    
+    [Parameter] public int? ArticleId { get; set; }
 
     #endregion
 
     #region Functions
-    
-    protected async Task HandleValidSubmit()
-    {
-        await ArticleService.CreateArticleAsync(Article);
-    }
 
     protected async Task EditArticle()
     {

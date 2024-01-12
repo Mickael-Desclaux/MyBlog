@@ -1,5 +1,6 @@
 ﻿@page "/Articles"
 @inherits MyBlog.WebApp.Components.Pages.ComponentsBase.ArticlesBase
+
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
 
 <h1>Articles</h1>
@@ -45,8 +46,12 @@
             <td>@article.CreatedAt</td>
             <td>@article.UpdatedAt</td>
             <td>
+                <button @onclick="() => Callback(article)">Edit</button>
+            </td>
+            <td>
                 <button @onclick="() => OnDeleteArticle(article.ArticleId)">Delete</button>
             </td>
+
         </tr>
     }
     </tbody>

@@ -24,5 +24,17 @@ public class ArticleService(HttpClient httpClient)
         var response = await httpClient.DeleteAsync($"article/{articleId}");
         response.EnsureSuccessStatusCode();
     }
+    
+    public async Task UpdateArticleAsync(Article article)
+    {
+        var response = await httpClient.PutAsJsonAsync($"article/{article.ArticleId}", article);
+        response.EnsureSuccessStatusCode();
+    }
+
+    public async Task GetArticleByIdAsync(int articleId)
+    {
+        var response = await httpClient.GetAsync($"article/{articleId}");
+        response.EnsureSuccessStatusCode();
+    }
     //Add CRUD operations here
 }
