@@ -4,18 +4,18 @@ using MyBlog.Api.Data;
 
 namespace MyBlog.Api.Filters.ActionFilters;
 
-public class ArticleValidateIdFilterAttribute(ApplicationDbContext dbContext) : ActionFilterAttribute
+public class UserValidateIdFilterAttribute(ApplicationDbContext dbContext) : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext context)
     {
         base.OnActionExecuting(context);
 
-        var articleId = context.ActionArguments["id"] as int?;
-        if (articleId.HasValue)
+        var userId = context.ActionArguments["id"] as int?;
+        if (userId.HasValue)
         {
-            if (articleId.Value <= 0)
+            if (userId.Value <= 0)
             {
-                context.ModelState.AddModelError("ArticleId", "ArticleId is invalid");
+                context.ModelState.AddModelError("UserId", "UserId is invalid");
                 var problemDetails = new ValidationProblemDetails(context.ModelState)
                 {
                     Status = StatusCodes.Status400BadRequest
@@ -24,11 +24,11 @@ public class ArticleValidateIdFilterAttribute(ApplicationDbContext dbContext) : 
             }
             else
             {
-                var article = dbContext.Articles.Find(articleId.Value);
+                var user = dbContext.Users.Find(userId.Value);
 
-                if (article == null)
+                if (user == null)
                 {
-                    context.ModelState.AddModelError("ArticleId", "Article doesn't exist");
+                    context.ModelState.AddModelError("UserId", "User doesn't exist");
                     var problemDetails = new ValidationProblemDetails(context.ModelState)
                     {
                         Status = StatusCodes.Status404NotFound
@@ -37,7 +37,7 @@ public class ArticleValidateIdFilterAttribute(ApplicationDbContext dbContext) : 
                 }
                 else
                 {
-                    context.HttpContext.Items["article"] = article;
+                    context.HttpContext.Items["user"] = user;
                 }
             }
         }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.Api.Data;
+using MyBlog.Api.Filters.ActionFilters;
 using MyBlog.Api.Models;
 using MyBlog.Api.Services;
 
@@ -26,6 +27,7 @@ public class UserController : ControllerBase
     }
     
     [HttpGet("{id:int}")]
+    [TypeFilter(typeof(UserValidateIdFilterAttribute))]
     public ActionResult<User> GetById(int id)
     {
         return Ok(HttpContext.Items["user"]);
