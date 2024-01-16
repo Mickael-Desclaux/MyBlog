@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MyBlog.Api.Data;
 using MyBlog.Api.Filters.ActionFilters;
 using MyBlog.Api.Models;
@@ -34,6 +33,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("create")]
+    [TypeFilter(typeof(UserValidateCreateFilterAttribute))]
     public ActionResult<User> Create([FromBody] User user)
     {
         user.Password = _passwordHasherService.HashPassword(user.Password);
