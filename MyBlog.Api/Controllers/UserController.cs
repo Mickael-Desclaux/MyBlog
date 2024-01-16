@@ -57,7 +57,8 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpDelete]
+    [HttpDelete("{id:int}")]
+    [TypeFilter(typeof(UserValidateIdFilterAttribute))]
     public ActionResult<User> Delete(int id)
     {
         var userToDelete = HttpContext.Items["user"] as User;

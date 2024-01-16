@@ -8,19 +8,12 @@ namespace MyBlog.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ArticleController : ControllerBase
+public class ArticleController(ApplicationDbContext dbContext) : ControllerBase
 {
-    private readonly ApplicationDbContext _dbContext;
-    
-    public ArticleController(ApplicationDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-    
     [HttpGet]
     public ActionResult<List<Article>> Get()
     {
-        return Ok(_dbContext.Articles);
+        return Ok(dbContext.Articles);
     }
 
     [HttpGet("{id:int}")]
@@ -36,8 +29,8 @@ public class ArticleController : ControllerBase
     {
         article.CreatedAt = DateTime.UtcNow;
         article.UpdatedAt = article.CreatedAt;
-        _dbContext.Articles.Add(article);
-        _dbContext.SaveChanges();
+        dbContext.Articles.Add(article);
+        dbContext.SaveChanges();
 
         return CreatedAtAction(nameof(GetById), new { id = article.ArticleId }, article);
     }
@@ -61,7 +54,7 @@ public class ArticleController : ControllerBase
         articleToUpdate.Quotes = article.Quotes;
         articleToUpdate.UpdatedAt = DateTime.UtcNow;
 
-        _dbContext.SaveChanges();
+        dbContext.SaveChanges();
 
         return NoContent();
     }
@@ -72,8 +65,8 @@ public class ArticleController : ControllerBase
     {
         var articleToDelete = HttpContext.Items["article"] as Article;
 
-        _dbContext.Articles.Remove(articleToDelete);
-        _dbContext.SaveChanges();
+        dbContext.Articles.Remove(articleToDelete);
+        dbContext.SaveChanges();
         
         return Ok(articleToDelete);
     }
