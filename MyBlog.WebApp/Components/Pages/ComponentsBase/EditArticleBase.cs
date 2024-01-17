@@ -35,7 +35,7 @@ public class EditArticleBase : ComponentBase
             }
 
             Article.Quotes.Add(NewQuote);
-            NewQuote = string.Empty; // Réinitialiser le champ de saisie
+            NewQuote = string.Empty;
         }
     }
 

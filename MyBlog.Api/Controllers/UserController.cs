@@ -7,7 +7,7 @@ using MyBlog.Api.Services;
 namespace MyBlog.Api.Controllers;
 
 [ApiController]
-[Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
+[Route("api/[controller]")]
 public class UserController : ControllerBase
 {
     private readonly ApplicationDbContext _dbContext;

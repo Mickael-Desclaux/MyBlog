@@ -36,5 +36,4 @@ public class ArticleService(HttpClient httpClient)
         var response = await httpClient.GetAsync($"article/{articleId}");
         response.EnsureSuccessStatusCode();
     }
-    //Add CRUD operations here
 }

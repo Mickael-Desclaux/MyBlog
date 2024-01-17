@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using MyBlog.WebApp.Components.Pages.Views;
 using MyBlog.WebApp.Model;
 using MyBlog.WebApp.Services;
 
@@ -28,16 +29,10 @@ public class ArticlesBase : ComponentBase
         NavigationManager.NavigateTo($"EditArticle/{article.ArticleId}");
     }
     
-    protected async Task OnDeleteArticle(int articleId)
+    protected async Task OnDeleteArticle(Article article)
     {
-        await ArticleService.DeleteArticleAsync(articleId);
-        await ReloadArticles();
-    }
-    
-    private async Task ReloadArticles()
-    {
-        Articles = await ArticleService.GetAllArticlesAsync();
-        StateHasChanged();
+        await ArticleService.DeleteArticleAsync(article.ArticleId);
+        Articles.Remove(article);
     }
 
     #endregion

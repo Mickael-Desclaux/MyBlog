@@ -1,0 +1,12 @@
+﻿@page "/UserConnection"
+@inherits MyBlog.WebApp.Components.Pages.ComponentsBase.UserBase
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+
+<h3>UserConnection</h3>
+
+<EditForm Model="@user" OnValidSubmit="HandleLoginAsync">
+    <InputText @bind-Value="user.Email" />
+    <InputText @bind-Value="user.Password" type="password" />
+
+    <button type="submit">Register</button>
+</EditForm>
