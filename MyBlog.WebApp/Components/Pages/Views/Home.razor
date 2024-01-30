@@ -1,6 +1,9 @@
 ﻿@page "/"
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
 @using Microsoft.AspNetCore.Components.Authorization
+@using MyBlog.WebApp.Services
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@inject AuthenticationService authService
 
 <PageTitle>Home</PageTitle>
 
@@ -8,13 +11,25 @@
 
 <p>Welcome to your new app.</p>
 
-<p>Email de l'utilisateur connecté : @userEmail</p>
+@if (IsUserAuthenticated)
+{
+    <p>Email de l'utilisateur connecté : @userEmail</p>
+    <button @onclick="Logout">Déconnexion</button>
+}
 
 @code {
     private string userEmail = "";
+    protected bool IsUserAuthenticated { get; private set; }
+
+    private async Task Logout()
+    {
+        await authService.Logout();
+    }
 
     protected override async Task OnInitializedAsync()
     {
+        var isAuthenticated = await authService.IsUserAuthenticated();
+        IsUserAuthenticated = isAuthenticated;
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
 

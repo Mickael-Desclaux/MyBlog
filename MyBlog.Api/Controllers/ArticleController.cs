@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyBlog.Api.Data;
 using MyBlog.Api.Filters.ActionFilters;
 using MyBlog.Api.Filters.ExceptionFilters;
@@ -11,6 +12,7 @@ namespace MyBlog.Api.Controllers;
 public class ArticleController(ApplicationDbContext dbContext) : ControllerBase
 {
     [HttpGet]
+    // [Authorize]
     public ActionResult<List<Article>> Get()
     {
         return Ok(dbContext.Articles);
@@ -24,6 +26,7 @@ public class ArticleController(ApplicationDbContext dbContext) : ControllerBase
     }
 
     [HttpPost]
+    // [Authorize]
     [ArticleValidateCreateFilter]
     public ActionResult<Article> Create([FromBody] Article article)
     {
@@ -36,6 +39,7 @@ public class ArticleController(ApplicationDbContext dbContext) : ControllerBase
     }
 
     [HttpPut("{id:int}")]
+    // [Authorize]
     [TypeFilter(typeof(ArticleValidateIdFilterAttribute))]
     [ArticleValidateUpdateFilter]
     [TypeFilter(typeof(ArticleHandleUpdateExceptionsFilterAttribute))]
@@ -60,6 +64,7 @@ public class ArticleController(ApplicationDbContext dbContext) : ControllerBase
     }
 
     [HttpDelete("{id:int}")]
+    // [Authorize]
     [TypeFilter(typeof(ArticleValidateIdFilterAttribute))]
     public ActionResult<Article> Delete(int id)
     {

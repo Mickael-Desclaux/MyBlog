@@ -34,7 +34,7 @@ public class CreateArticleBase : ComponentBase
         {
             if (Article.Quotes == null)
             {
-                Article.Quotes = new List<string>();
+                Article.Quotes = new List<string?>();
             }
 
             Article.Quotes.Add(NewQuote);

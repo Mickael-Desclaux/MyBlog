@@ -1,0 +1,36 @@
+﻿@rendermode @(new InteractiveServerRenderMode(prerender: false))
+@using MyBlog.WebApp.Model
+@using MyBlog.WebApp.Services
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationService AuthService
+
+<header>
+    <div>
+        <a href="#" class="logo">A Reader's Journeys</a>
+    </div>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="#">Reviews</a>
+        <a href="#">My top books</a>
+        @if (IsUserAuthenticated)
+        {
+            <a href="/article">Articles</a>
+        }
+    </nav>
+</header>
+
+@code {
+    protected bool IsUserAuthenticated { get; private set; }
+
+    private async Task Logout()
+    {
+        await AuthService.Logout();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var isAuthenticated = await AuthService.IsUserAuthenticated();
+        IsUserAuthenticated = isAuthenticated;
+
+    }
+}

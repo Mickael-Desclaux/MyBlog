@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.ResponseCompression;
 using MyBlog.WebApp.Components;
 using MyBlog.WebApp.Services;
@@ -14,9 +15,14 @@ builder.Services.AddResponseCompression(opts =>
         new[] { "application/octet-stream" });
 });
 
+builder.Services.AddAuthorization();
+
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddScoped(_ => new HttpClient {BaseAddress = new Uri("https://localhost:7179/api/")});
+builder.Services.AddScoped<AuthenticationService>();
+builder.Services.AddBlazoredLocalStorage();
+
+builder.Services.AddScoped(_ => new HttpClient {BaseAddress = new Uri("https://localhost:7179/")});
 builder.Services.AddScoped<ArticleService>();
 
 var app = builder.Build();
