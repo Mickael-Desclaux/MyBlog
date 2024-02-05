@@ -1,6 +1,8 @@
 ﻿.intro {
-    display: block;
-    margin-top: 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 3rem;
     padding-top: 2rem;
     padding-bottom: 4rem;
     text-align: center;
@@ -8,14 +10,16 @@
     background-color: #202020;
 }
 
-.intro h1 {
+.intro-container {
+    width: 80%;
+}
+
+.intro h2 {
     font-size: 3rem;
+    margin-bottom: 2rem;
 }
 
 .intro p {
-    padding-top: 2rem;
-    padding-left: 10rem;
-    padding-right: 10rem;
     font-size: 1.2rem;
 }
 
@@ -23,18 +27,22 @@
     color: #48A9A6;
 }
 
-/* Breakpoints */
-
-@media (max-width: 1050px) {
-    .intro p {
-        padding-left: 5rem;
-        padding-right: 5rem;
-    }
+.last_readings {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
-@media (max-width: 700px) {
-    .intro p {
-        padding-left: 3rem;
-        padding-right: 3rem;
-    }
+.last_readings-container {
+    width: 80%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: 4rem;
+    text-align: center;
+    color: #EAD2AC;
+    background-color: #004548;
+}
+
+.last_readings h3 {
+    font-size: 2rem;
 }

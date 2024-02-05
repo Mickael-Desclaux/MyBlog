@@ -11,29 +11,29 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
-// builder.Services.AddCors(options =>
-// {
-//     options.AddPolicy(name: "AllowSpecificOrigin",
-//         policyBuilder =>
-//         {
-//             policyBuilder.WithOrigins("https://localhost:7294")
-//                 .AllowAnyHeader()
-//                 .AllowAnyMethod();
-//         });
-// });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowSpecificOrigin",
+        policyBuilder =>
+        {
+            policyBuilder.WithOrigins("https://localhost:7294")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
 
-// builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//     .AddJwtBearer(options =>
-//     {
-//         options.TokenValidationParameters = new TokenValidationParameters
-//         {
-//             ValidIssuer = "https://localhost:7294",
-//             ValidAudience = "https://localhost:7179",
-//             ValidateLifetime = true,
-//             ValidateIssuerSigningKey = true,
-//             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("DkDslmwwPYCdGqscpuHxUnPRS9QfpaiLqzPN0DOlkzE="))
-//         };
-//     });
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidIssuer = "https://localhost:7294",
+            ValidAudience = "https://localhost:7179",
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("DkDslmwwPYCdGqscpuHxUnPRS9QfpaiLqzPN0DOlkzE="))
+        };
+    });
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -53,7 +53,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapIdentityApi<IdentityUser>();
-// app.UseCors("AllowSpecificOrigin");
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
 app.UseRouting();

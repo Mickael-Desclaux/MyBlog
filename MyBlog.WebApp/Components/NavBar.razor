@@ -5,9 +5,9 @@
 @inject AuthenticationService AuthService
 
 <header>
-    <div>
+    <h1>
         <a href="#" class="logo">A Reader's Journeys</a>
-    </div>
+    </h1>
     
     <input type="checkbox" id="check">
     <label for="check" class="icons">
@@ -21,7 +21,7 @@
         <a href="#">My top books</a>
         @if (IsUserAuthenticated)
         {
-            <a href="/article">Articles</a>
+            <a href="/articles">Articles</a>
         }
     </nav>
 </header>

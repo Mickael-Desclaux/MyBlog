@@ -12,11 +12,21 @@ namespace MyBlog.Api.Controllers;
 public class ArticleController(ApplicationDbContext dbContext) : ControllerBase
 {
     [HttpGet]
-    // [Authorize]
-    public ActionResult<List<Article>> Get()
+    public ActionResult<IEnumerable<Article>> Get(bool lastReadings = false)
     {
-        return Ok(dbContext.Articles);
+        var articleNumber = 5;
+
+        IQueryable<Article> query = dbContext.Articles;
+
+        if (lastReadings)
+        {
+            query = query.OrderByDescending(a => a.CreatedAt).Take(articleNumber);
+        }
+
+        var articles = query.ToList();
+        return Ok(articles);
     }
+
 
     [HttpGet("{id:int}")]
     [TypeFilter(typeof(ArticleValidateIdFilterAttribute))]
