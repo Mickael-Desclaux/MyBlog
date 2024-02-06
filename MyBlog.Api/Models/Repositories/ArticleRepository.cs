@@ -6,15 +6,36 @@ public static class ArticleRepository
     {
         new Article
         {
-            ArticleId = 1, TagIds = [1, 2], BookAuthor = "test", BookTitle = "Test", BookNumberOfPages = 400, BookCover = "dddd", TextSection = "hfdgbhgdf dfgihdfg", ReviewResume = "ikjfgdnf",
-            MyNote = 5, Quotes = ["dfgdfg", "dfgdfg"]
+            ArticleId = 1, 
+            TagIds = [1, 2], 
+            BookAuthor = "test", 
+            BookTitle = "Test", 
+            BookNumberOfPages = 400, 
+            BookCover = ConvertImageToBytes("C:\\Users\\Mickaël\\Pictures\\Camera Roll\\Pdp.jpg"), 
+            TextSection = "hfdgbhgdf dfgihdfg", 
+            ReviewResume = "ikjfgdnf",
+            MyNote = 5, 
+            Quotes = ["dfgdfg", "dfgdfg"]
         },
         new Article
         {
-            ArticleId = 2, TagIds = [1, 2], BookAuthor = "test", BookTitle = "Test", BookNumberOfPages = 400, BookCover = "ddddghg", TextSection = "hfhgdgbhgdf dfgihdfg", ReviewResume = "ikjfgddgnf",
-            MyNote = 4, Quotes = ["dfgdfffg", "dfgdfgff"]
+            ArticleId = 2, 
+            TagIds = [1, 2], 
+            BookAuthor = "test", 
+            BookTitle = "Test", 
+            BookNumberOfPages = 400, 
+            BookCover = ConvertImageToBytes("C:\\Users\\Mickaël\\Pictures\\Camera Roll\\Pdp.jpg"),
+            TextSection = "hfhgdgbhgdf dfgihdfg", 
+            ReviewResume = "ikjfgddgnf",
+            MyNote = 4, 
+            Quotes = ["dfgdfffg", "dfgdfgff"]
         }
     };
+
+    public static byte[] ConvertImageToBytes(string imagePath)
+    {
+        return File.ReadAllBytes(imagePath);
+    }
 
     public static List<Article> GetArticles()
     {
