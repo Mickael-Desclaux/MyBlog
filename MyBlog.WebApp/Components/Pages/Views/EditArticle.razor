@@ -7,7 +7,7 @@
 <EditForm Model="@Article" OnValidSubmit="EditArticle" FormName="articleForm">
     <InputText id="bookTitle" @bind-Value="Article.BookTitle"/><br>
     <InputText id="bookAuthor" @bind-Value="Article.BookAuthor"/><br>
-    <InputText id="bookCover" @bind-Value="Article.BookCover"/><br>
+    <InputFile OnChange="HandleFileUpload" /><br>
     <InputText id="bookResume" @bind-Value="Article.BookResume"/><br>
     <InputNumber id="bookNumOfPages" @bind-Value="Article.BookNumberOfPages"/><br>
     <InputText id="textSection" @bind-Value="Article.TextSection"/><br>
@@ -29,3 +29,21 @@
 
     <button type="submit">Update</button>
 </EditForm>
+
+
+@code {
+
+    public async Task HandleFileUpload(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await file.OpenReadStream().CopyToAsync(memoryStream);
+                Article.BookCover = memoryStream.ToArray(); // Assurez-vous que votre modèle peut stocker les données du fichier comme un tableau de bytes
+            }
+        }
+    }
+
+}

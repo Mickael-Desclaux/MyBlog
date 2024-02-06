@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using MyBlog.WebApp.Model;
 using MyBlog.WebApp.Services;
 
@@ -9,7 +10,9 @@ public class CreateArticleBase : ComponentBase
     #region Statement
 
     [Inject] private ArticleService ArticleService { get; init; } = default!;
-    
+
+    [Inject] private IJSRuntime JSRuntime { get; init; } = default!;
+
     protected Article Article = new();
     
     protected string NewQuote = string.Empty;

@@ -12,7 +12,7 @@ public class Article
     
     public int? BookNumberOfPages { get; set; }
     
-    public string? BookCover { get; set; }
+    public byte[] BookCover { get; set; }
     
     public string? TextSection { get; set; }
     

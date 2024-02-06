@@ -45,7 +45,8 @@ public class ArticleController(ApplicationDbContext dbContext) : ControllerBase
         dbContext.Articles.Add(article);
         dbContext.SaveChanges();
 
-        return CreatedAtAction(nameof(GetById), new { id = article.ArticleId }, article);
+        return Ok(article);
+        //return CreatedAtAction(nameof(GetById), new { id = article.ArticleId }, article);
     }
 
     [HttpPut("{id:int}")]
