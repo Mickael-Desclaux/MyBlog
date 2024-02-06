@@ -34,5 +34,10 @@ public class ArticlesBase : ComponentBase
         Articles.Remove(article);
     }
 
+    protected string GetBookCover(byte[] imageBytes)
+    {
+        return $"data:image/jpeg;base64,{Convert.ToBase64String(imageBytes)}";
+    }
+
     #endregion
 }

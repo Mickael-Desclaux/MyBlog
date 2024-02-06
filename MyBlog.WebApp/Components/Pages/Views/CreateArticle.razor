@@ -19,13 +19,13 @@
         {
             <div>
                 <span>@quote</span>
-                <button @onclick="() => RemoveQuote(quote)">Delete quote</button>
+                <button type="button" @onclick="() => RemoveQuote(quote)">Delete quote</button>
             </div>
         }
     }
     
     <InputText id="newQuote" @bind-Value="NewQuote"/>
-    <button @onclick="AddQuote">Add a new quote</button><br/>
+    <button type="button" @onclick="AddQuote">Add a new quote</button><br/>
 
     <button type="submit">Create</button>
 </EditForm>
@@ -40,7 +40,7 @@
             using (var memoryStream = new MemoryStream())
             {
                 await file.OpenReadStream().CopyToAsync(memoryStream);
-                Article.BookCover = memoryStream.ToArray(); // Assurez-vous que votre modèle peut stocker les données du fichier comme un tableau de bytes
+                Article.BookCover = memoryStream.ToArray();
             }
         }
     }
