@@ -37,5 +37,10 @@ namespace MyBlog.WebApp.Components.Pages.ComponentsBase
                 userEmail = user.FindFirst(c => c.Type == System.Security.Claims.ClaimTypes.Email)?.Value ?? "Non spécifié";
             }
         }
+
+        protected string GetBookCover(byte[] imageBytes)
+        {
+            return $"data:image/jpeg;base64,{Convert.ToBase64String(imageBytes)}";
+        }
     }
 }

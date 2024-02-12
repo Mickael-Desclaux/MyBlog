@@ -1,10 +1,15 @@
 ﻿header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     background: #202020;
     padding: 2rem;
     font-family: 'Awake the Beauty';
+    z-index: 100;
 }
 
 .navbar a {
@@ -37,7 +42,7 @@
 
 @media (max-width: 1050px) {
     header {
-        padding:0.75rem 0.5%;
+        padding: 1rem 0.5%;
     }
 
     .navbar a {

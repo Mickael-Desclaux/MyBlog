@@ -10,7 +10,6 @@
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac odio dapibus, lobortis urna eget, gravida dolor. Proin maximus rutrum justo vitae vulputate. Suspendisse in magna sit amet nulla scelerisque semper eget vitae orci. Fusce magna erat, rhoncus quis enim a, fermentum pretium nunc. Donec ac diam est. Sed placerat erat nisl, fermentum rhoncus arcu gravida in. Pellentesque dapibus facilisis placerat.
             Pellentesque eget tortor vel <a>sem pellentesque</a> facilisis id quis lectus. Pellentesque et imperdiet eros. Vestibulum vitae fringilla sem. Maecenas interdum rhoncus risus ultricies volutpat. Maecenas luctus eros eu metus viverra eleifend. Suspendisse potenti. Nullam scelerisque molestie magna, vel consectetur erat dapibus id. Fusce pulvinar lorem vitae sem ornare scelerisque. <a>Curabitur blandit</a> purus quis efficitur finibus. Nunc consectetur, dolor in scelerisque auctor, sapien ligula accumsan metus, non condimentum nunc justo non nulla. Donec consectetur ornare ex vel aliquet. Pellentesque at nulla faucibus, tristique dui vitae, iaculis nunc. Praesent volutpat nibh nibh.
-            Phasellus eget aliquet turpis. Pellentesque cursus libero ut neque efficitur porta. Maecenas sem erat, sagittis et ante a, luctus tempor risus. Morbi fringilla ornare mi sit amet ultricies. Nullam laoreet eget felis ac convallis. Aenean maximus eu ante accumsan rhoncus. Sed ac posuere metus. Suspendisse elit dui, feugiat iaculis posuere vitae, viverra ac nisi. Donec pulvinar leo at erat interdum rutrum.
         </p>
     </div>
 </div>
@@ -18,13 +17,18 @@
 <div class="last_readings">
     <div class="last_readings-container">
         <h3>My Latest Readings</h3>
-
-        @foreach (var article in Articles)
-        {
-            <ul>@article.ArticleId</ul>
-            <ul>@article.BookAuthor</ul>
-            <ul>@article.BookTitle</ul>
-        }
+        <div class="articles-container">
+            @foreach (var article in Articles)
+            {
+                <div class="article_card">
+                    <h4><b>@article.BookTitle by @article.BookAuthor</b></h4>
+                    <div class="article_card-container">
+                        <img class="book_cover" src="@GetBookCover(article.BookCover)" alt="Cover" />
+                        <p>@article.MyNote</p>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>
 
