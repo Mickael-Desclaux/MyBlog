@@ -25,7 +25,7 @@ public class Article
     
     public string? ReviewResume { get; set; }
     
-    public float? MyNote { get; set; }
+    public int MyNote { get; set; }
     
     public List<string?>? Quotes { get; set; }
     

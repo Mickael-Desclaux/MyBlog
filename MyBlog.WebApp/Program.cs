@@ -2,6 +2,7 @@ using Blazored.LocalStorage;
 using Microsoft.AspNetCore.ResponseCompression;
 using MyBlog.WebApp.Components;
 using MyBlog.WebApp.Services;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,8 @@ builder.Services.AddBlazoredLocalStorage();
 
 builder.Services.AddScoped(_ => new HttpClient {BaseAddress = new Uri("https://localhost:7179/")});
 builder.Services.AddScoped<ArticleService>();
+
+builder.Services.AddMudServices();
 
 var app = builder.Build();
 

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 10rem;
+    margin-top: 150px;
     padding-top: 2rem;
     padding-bottom: 4rem;
     text-align: center;
@@ -41,14 +41,13 @@
     text-align: center;
     color: #EAD2AC;
     background-color: #004548;
-    overflow-x: auto; /* Permet le défilement horizontal si nécessaire */
+    overflow-x: auto;
 }
 
 .articles-container {
     display: flex;
     justify-content: space-evenly;
-    flex-wrap: nowrap;
-    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .last_readings h3 {
@@ -59,19 +58,24 @@
     flex: 0 0 auto;
     margin-top: 2rem;
     padding-bottom: 0.5rem;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 8px 5px rgba(0,0,0,0.2);
+    border-radius: 0.3rem;
     transition: 0.3s;
-    width: 18%;
+    min-width: 200px;
+    max-width: 300px;
 }
 
 .article_card h4 {
     font-size: 1.5rem;
-    padding-top: 0.5rem;
+    padding: 1rem;
     text-decoration: underline;
 }
 
-.article_card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+.article-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
 }
 
 .article_card-container {
@@ -82,17 +86,4 @@
     width: 100%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-}
-
-/* Breakpoints */
-
-@media (max-width: 1050px) {
-    .articles-container {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .article_card {
-        width: 50%;
-    }
 }
