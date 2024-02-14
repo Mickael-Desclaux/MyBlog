@@ -3,59 +3,61 @@
 
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
 
-<h1>Articles</h1>
-<table>
-    <thead>
-    <tr>
-        <td>ArticleId</td>
-        <td>BookAuthor</td>
-        <td>BookTitle</td>
-        <td>BookNumberOfPages</td>
-        <td>BookCover</td>
-        <td>TextSection</td>
-        <td>BookResume</td>
-        <td>ReviewResume</td>
-        <td>MyNote</td>
-        <td>Quotes</td>
-        <td>CreatedAt</td>
-        <td>UpdatedAt</td>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var article in Articles)
-    {
-        <tr>
-            <td>@article.ArticleId</td>
-            <td>@article.BookAuthor</td>
-            <td>@article.BookTitle</td>
-            <td>@article.BookNumberOfPages</td>
-            <td><img src="@GetBookCover(article.BookCover)" alt="Cover" /></td>
-            <td>@article.TextSection</td>
-            <td>@article.BookResume</td>
-            <td>@article.ReviewResume</td>
-            <td>@article.MyNote</td>
-            <td>
-                @if (article.Quotes != null)
-                {
-                    foreach (var quote in article.Quotes)
-                    {
-                        <p>@quote</p>
-                    }
-                }
-            </td>
-            <td>@article.CreatedAt</td>
-            <td>@article.UpdatedAt</td>
-            <td>
-                <button @onclick="() => Callback(article)">Edit</button>
-            </td>
-            <td>
-                <button @onclick="() => OnDeleteArticle(article)">Delete</button>
-            </td>
+<h2>Articles</h2>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <td>ArticleId</td>
+                <td>BookAuthor</td>
+                <td>BookTitle</td>
+                <td>BookNumberOfPages</td>
+                <td>BookCover</td>
+                <td>TextSection</td>
+                <td>BookResume</td>
+                <td>ReviewResume</td>
+                <td>MyNote</td>
+                <td>Quotes</td>
+                <td>CreatedAt</td>
+                <td>UpdatedAt</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var article in Articles)
+            {
+                <tr>
+                    <td>@article.ArticleId</td>
+                    <td>@article.BookAuthor</td>
+                    <td>@article.BookTitle</td>
+                    <td>@article.BookNumberOfPages</td>
+                    <td><img src="@GetBookCover(article.BookCover)" alt="Cover" /></td>
+                    <td>@article.TextSection</td>
+                    <td>@article.BookResume</td>
+                    <td>@article.ReviewResume</td>
+                    <td>@article.MyNote</td>
+                    <td>
+                        @if (article.Quotes != null)
+                        {
+                            foreach (var quote in article.Quotes)
+                            {
+                                <p>@quote</p>
+                            }
+                        }
+                    </td>
+                    <td>@article.CreatedAt</td>
+                    <td>@article.UpdatedAt</td>
+                    <td>
+                        <button @onclick="() => Callback(article)">Edit</button>
+                    </td>
+                    <td>
+                        <button @onclick="() => OnDeleteArticle(article)">Delete</button>
+                    </td>
 
-        </tr>
-    }
-    </tbody>
-</table>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 <button>
     <a href="/CreateArticle" asp-controller="article" asp-action="CreateArticle">Add Article</a>
 </button>
