@@ -1,0 +1,35 @@
+﻿h5 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    color: #EAD2AC;
+}
+
+.socials-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.socials-icons {
+    max-width: 9vh;
+    padding-right: 1.5rem;
+}
+
+.top_btn-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.top_btn {
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#top_btn {
+    color: #EAD2AC;
+    font-size: 1.2rem;
+}
