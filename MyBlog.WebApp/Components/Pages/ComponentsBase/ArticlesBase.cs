@@ -8,8 +8,7 @@ public class ArticlesBase : ComponentBase
 {
     #region Statement
 
-    protected List<Article> Articles = new();
-    [Inject] private ArticleService ArticleService { get; init; } = default!;
+    [Inject] protected ArticleService _articleService { get; init; } = default!;
     [Inject] private NavigationManager NavigationManager { get; init; } = default!;
 
     #endregion
@@ -18,8 +17,8 @@ public class ArticlesBase : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        var articles = await ArticleService.GetAllArticlesAsync();
-        Articles = articles;
+        var articles = await _articleService.GetAllArticlesAsync();
+        _articleService.Articles = articles;
     }
     
     protected void Callback(Article article)
@@ -30,8 +29,8 @@ public class ArticlesBase : ComponentBase
     
     protected async Task OnDeleteArticle(Article article)
     {
-        await ArticleService.DeleteArticleAsync(article.ArticleId);
-        Articles.Remove(article);
+        await _articleService.DeleteArticleAsync(article.ArticleId);
+        _articleService.Articles.Remove(article);
     }
 
     protected string GetBookCover(byte[] imageBytes)

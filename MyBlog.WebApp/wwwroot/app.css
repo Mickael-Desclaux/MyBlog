@@ -53,10 +53,15 @@ table {
 }
 
 body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     background-color: #E5E5D3;
     font-family: 'Crimson Text';
 }
 
 footer {
+    width: 100%;
     background-color: #202020;
+    margin-top: auto;
 }

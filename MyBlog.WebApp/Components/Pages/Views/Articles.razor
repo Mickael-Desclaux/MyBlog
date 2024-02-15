@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var article in Articles)
+            @foreach (var article in _articleService.Articles)
             {
                 <tr>
                     <td>@article.ArticleId</td>

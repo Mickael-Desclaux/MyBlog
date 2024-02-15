@@ -18,19 +18,21 @@
     <div class="last_readings-container">
         <h3>My Latest Readings</h3>
         <div class="articles-container">
-            @foreach (var article in Articles)
+            @foreach (var article in _articleService.Articles)
             {
                 <div class="article_card">
                     <h4><b>@article.BookTitle by @article.BookAuthor</b></h4>
                     <div class="article_card-container">
-                        <img class="book_cover" src="@GetBookCover(article.BookCover)" alt="Cover" />
+                        <NavLink href="@($"/review/{article.ArticleId}")">
+                            <img class="book_cover" src="@GetBookCover(article.BookCover)" alt="Cover" />
+                        </NavLink>
                         <div class="article-rating">
-                            <MudRating ReadOnly="true" 
-                                SelectedValue="@article.MyNote" 
-                                FullIcon="@Icons.Material.Filled.Favorite"
-                                EmptyIcon="@Icons.Material.Filled.FavoriteBorder"
-                                Color="Color.Error"
-                                Size="Size.Large"/>
+                            <MudRating ReadOnly="true"
+                                       SelectedValue="@article.MyNote"
+                                       FullIcon="@Icons.Material.Filled.Favorite"
+                                       EmptyIcon="@Icons.Material.Filled.FavoriteBorder"
+                                       Color="Color.Error"
+                                       Size="Size.Large" />
                         </div>
                     </div>
                 </div>

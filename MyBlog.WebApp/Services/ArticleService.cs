@@ -1,9 +1,13 @@
 ﻿using MyBlog.WebApp.Model;
+using System.Net;
+using System.Text.Json;
 
 namespace MyBlog.WebApp.Services;
 
 public class ArticleService(HttpClient httpClient)
 {
+    public List<Article> Articles = new();
+
     public async Task<List<Article>> GetAllArticlesAsync()
     {
         var response = await httpClient.GetAsync("api/article");
@@ -40,9 +44,15 @@ public class ArticleService(HttpClient httpClient)
         response.EnsureSuccessStatusCode();
     }
 
-    public async Task GetArticleByIdAsync(int articleId)
+    public async Task<Article> GetArticleByIdAsync(int articleId)
     {
         var response = await httpClient.GetAsync($"api/article/{articleId}");
         response.EnsureSuccessStatusCode();
+
+        var content = await response.Content.ReadAsStringAsync();
+
+        var article = JsonSerializer.Deserialize<Article>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+        return article ?? throw new HttpRequestException("Article data is null.", null, HttpStatusCode.NoContent);
     }
 }

@@ -7,8 +7,7 @@ namespace MyBlog.WebApp.Components.Pages.ComponentsBase
 {
     public class HomeBase : ComponentBase
     {
-        protected List<Article> Articles = new();
-        [Inject] private ArticleService ArticleService { get; init; } = default!;
+        [Inject] protected ArticleService _articleService { get; init; } = default!;
 
         [Inject] private AuthenticationService AuthenticationService { get; init; } = default!;
 
@@ -24,8 +23,8 @@ namespace MyBlog.WebApp.Components.Pages.ComponentsBase
 
         protected override async Task OnInitializedAsync()
         {
-            var articles = await ArticleService.GetLastReadingsArticlesAsync();
-            Articles = articles;
+            var articles = await _articleService.GetLastReadingsArticlesAsync();
+            _articleService.Articles = articles;
 
             var isAuthenticated = await AuthenticationService.IsUserAuthenticated();
             IsUserAuthenticated = isAuthenticated;

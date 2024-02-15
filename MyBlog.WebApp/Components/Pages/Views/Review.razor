@@ -1,0 +1,16 @@
+﻿@page "/Review/{id:int}"
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+@inherits MyBlog.WebApp.Components.Pages.ComponentsBase.ReviewBase
+
+@if (article != null)
+{
+    <h2>Titre : @article.BookTitle</h2>
+    <p>@article.BookResume</p>
+
+    <h3>Informations sur le livre</h3>
+    <div>
+        <p>Titre : @article.BookTitle</p>
+        <p>Auteur : @article.BookAuthor</p>
+        <img src="@article.BookCover" alt="Couverture du livre" />
+    </div>
+}
