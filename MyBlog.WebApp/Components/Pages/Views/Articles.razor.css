@@ -1,3 +1,73 @@
 ﻿h2 {
     padding-top: 150px;
+    font-family: 'Crimson Text';
+    font-size: 2.5rem;
+    color: #202020;
+    text-align: center;
+}
+
+.articles_list {
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+}
+
+.article {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    min-width: 80vw;
+    margin-bottom: 1rem;
+    flex-direction: row;
+    color: #EAD2AC;
+    background-color: #004548;
+    padding: 1rem;
+}
+
+.book_img {
+    max-width: 20vh;
+    object-fit: cover;
+    height: auto;
+}
+
+.book_infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 3rem;
+    flex: 1;
+    height: 100%;
+}
+
+    .book_infos h3 {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: 2rem;
+        text-decoration: underline;
+    }
+
+    .book_infos p {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        flex-grow: 1;
+    }
+
+@media (max-width: 819px) {
+    .article {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: auto;
+    }
+
+    .book_img {
+        max-width: 50%;
+        margin: 1rem;
+    }
+
+    .book_infos {
+        padding: 0;
+        margin-bottom: 1rem;
+        width: 80%;
 }

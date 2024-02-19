@@ -4,7 +4,31 @@
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
 
 <h2>Articles</h2>
-<div>
+
+<div class="articles_list">
+    <div class="articles_list-container">
+        @foreach (var article in _articleService.Articles)
+        {
+            <div class="article">
+                <img class="book_img" src="@GetBookCover(article.BookCover)" alt="@article.BookTitle" />
+                <div class="book_infos">
+                    <h3>@article.BookTitle by @article.BookAuthor</h3>
+                    <p>@article.ReviewResume</p>
+                    <div class="rating">
+                        <MudRating ReadOnly="true"
+                                   SelectedValue="@article.MyNote"
+                                   FullIcon="@Icons.Material.Filled.Favorite"
+                                   EmptyIcon="@Icons.Material.Filled.FavoriteBorder"
+                                   Color="Color.Error"
+                                   Size="Size.Large" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@* <div>
     <table>
         <thead>
             <tr>
@@ -60,4 +84,4 @@
 </div>
 <button>
     <a href="/CreateArticle" asp-controller="article" asp-action="CreateArticle">Add Article</a>
-</button>
+</button> *@
