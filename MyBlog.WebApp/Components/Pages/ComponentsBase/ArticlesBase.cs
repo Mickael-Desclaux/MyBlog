@@ -10,6 +10,9 @@ public class ArticlesBase : ComponentBase
 
     [Inject] protected ArticleService _articleService { get; init; } = default!;
     [Inject] private NavigationManager NavigationManager { get; init; } = default!;
+    [Inject] private AuthenticationService AuthenticationService { get; init; } = default!;
+
+    protected bool IsUserAuthenticated { get; private set; }
 
     #endregion
 
@@ -19,6 +22,9 @@ public class ArticlesBase : ComponentBase
     {
         var articles = await _articleService.GetAllArticlesAsync();
         _articleService.Articles = articles;
+
+        var isAuthenticated = await AuthenticationService.IsUserAuthenticated();
+        IsUserAuthenticated = isAuthenticated;
     }
     
     protected void Callback(Article article)

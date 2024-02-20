@@ -6,9 +6,12 @@
 
 <header>
     <h1 id="top">
-        <a href="#" class="logo">A Reader's Journeys</a>
+        <div class="logo-container">
+            <img class="logo_img" src="Logo/Logo_ARJ.png" />
+            <a href="/" class="logo_txt">A Reader's Journeys</a>
+        </div>
     </h1>
-    
+
     <input type="checkbox" id="check">
     <label for="check" class="icons">
         <i class="bx bx-menu" id="menu-icon"></i>
@@ -19,10 +22,6 @@
         <a href="/">Home</a>
         <a href="/articles">Articles</a>
         <a href="#">My top books</a>
-        @if (IsUserAuthenticated)
-        {
-            <a href="/articles">Admin</a>
-        }
     </nav>
 </header>
 

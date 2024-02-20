@@ -12,6 +12,17 @@
     z-index: 100;
 }
 
+.logo-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.logo_img {
+    display: flex;
+    max-width: 110px;
+}
+
 .navbar a {
     text-decoration: none;
     color: #EAD2AC;
@@ -23,7 +34,7 @@
     display: none;
 }
 
-.logo {
+.logo_txt {
     font-size: 2.5rem;
     text-decoration: none;
     color: #EAD2AC;
@@ -31,8 +42,8 @@
 
 .icons {
     position: absolute;
-    right: 5%;
-    font-size: 2.8rem;
+    right: 1%;
+    font-size: 2rem;
     color: #E5E5D3;
     cursor: pointer;
     display: none;
@@ -50,12 +61,21 @@
         margin-left: 2rem 2%;
     }
 
-    .logo {
+    .logo_txt {
         font-size: 2rem;
     }
 }
 
 @media (max-width: 820px) {
+    .logo_txt {
+        font-size: 1.8rem;
+        padding-right: 1.5rem;
+    }
+
+    .logo_img {
+        max-width: 65px;
+    }
+
     .icons {
         display: inline-flex;
     }
@@ -84,7 +104,7 @@
     }
 
     #check:checked ~ .navbar {
-        height: 17rem;
+        height: 11rem;
     }
 
     .navbar a {

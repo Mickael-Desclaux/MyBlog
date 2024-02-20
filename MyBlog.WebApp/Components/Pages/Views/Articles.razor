@@ -10,10 +10,19 @@
         @foreach (var article in _articleService.Articles)
         {
             <div class="article">
-                <img class="book_img" src="@GetBookCover(article.BookCover)" alt="@article.BookTitle" />
+                <NavLink href="@($"/review/{article.ArticleId}")">
+                    <img class="book_img" src="@GetBookCover(article.BookCover)" alt="@article.BookTitle" />
+                </NavLink>
                 <div class="book_infos">
-                    <h3>@article.BookTitle by @article.BookAuthor</h3>
+                    <h3><a href="@($"/review/{article.ArticleId}")">@article.BookTitle by @article.BookAuthor</a></h3>
                     <p>@article.ReviewResume</p>
+                    <div class="admin_btn">
+                        @if (IsUserAuthenticated)
+                        {
+                            <button @onclick="() => Callback(article)">Edit</button>
+                            <button @onclick="() => OnDeleteArticle(article)">Delete</button>
+                        }
+                    </div>
                     <div class="rating">
                         <MudRating ReadOnly="true"
                                    SelectedValue="@article.MyNote"
@@ -27,6 +36,10 @@
         }
     </div>
 </div>
+
+<button>
+    <a href="/CreateArticle" asp-controller="article" asp-action="CreateArticle"><i class='bx bxs-plus-circle'></i></a>
+</button>
 
 @* <div>
     <table>

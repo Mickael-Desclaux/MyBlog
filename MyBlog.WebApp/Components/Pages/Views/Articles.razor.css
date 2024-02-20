@@ -19,6 +19,7 @@
     min-width: 80vw;
     margin-bottom: 1rem;
     flex-direction: row;
+    border-radius: 0.5rem;
     color: #EAD2AC;
     background-color: #004548;
     padding: 1rem;
@@ -46,11 +47,34 @@
         text-decoration: underline;
     }
 
+    .book_infos a {
+        text-decoration: none;
+        color: #EAD2AC;
+    }
+
     .book_infos p {
         padding-top: 1rem;
         padding-bottom: 1rem;
         flex-grow: 1;
     }
+
+    .admin_btn {
+        padding: 1rem 0 1rem 0;
+    }
+
+    .admin_btn button {
+        background-color: #202020;
+        padding: 0.5rem;
+        border-radius: 0.2rem;
+    }
+
+.bxs-plus-circle {
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    font-size: 5rem;
+    color: red;
+}
 
 @media (max-width: 819px) {
     .article {
@@ -59,6 +83,8 @@
         align-items: center;
         text-align: center;
         width: auto;
+        padding-top: 2rem;
+        margin: 1rem;
     }
 
     .book_img {
@@ -70,5 +96,20 @@
         padding: 0;
         margin-bottom: 1rem;
         width: 80%;
+    }
+
+    .admin_btn {
+        display: flex;
+        justify-content: center;
+    }
+
+        .admin_btn button {
+            margin: 0.5rem;
+        }
+
+    .bxs-plus-circle {
+        color: red;
+        bottom: 25px;
+        right: 25px;
     }
 }
