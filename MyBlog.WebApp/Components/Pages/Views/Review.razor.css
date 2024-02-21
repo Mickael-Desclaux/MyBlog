@@ -1,3 +1,121 @@
-﻿h2 {
+﻿#container {
+    display: flex;
+    justify-content: center;
     padding-top: 10rem;
+}
+
+.book_infos-container {
+    display: flex;
+    flex-direction: column;
+    width: 14%;
+}
+
+.book_infos {
+    background-color: #004548;
+    color: #EAD2AC;
+    margin-top: 15px;
+    padding: 15px;
+    line-height: 2rem;
+    font-size: 1.1rem;
+}
+
+.book_infos_label {
+    text-decoration: underline;
+}
+
+.main_content {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+    .main_content div {
+        background-color: #202020;
+        color: #EAD2AC;
+        margin: 0 0 0 10px;
+    }
+
+    .main_content h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1.5rem;
+        font-size: 1.9rem;
+        text-decoration: underline;
+    }
+
+    .main_content h3 {
+        font-size: 1.5rem;
+        text-decoration: underline;
+    }
+
+    .main_content .review_content {
+        min-height: 100%;
+    }
+
+    .main_content p {
+        font-size: 1.1rem;
+        line-height: 1.3rem;
+        padding: 2rem;
+    }
+
+    .main_content h3 {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .main_content h4 {
+        font-size: 1.3rem;
+        text-decoration: underline;
+    }
+
+.quotes-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.quotes {
+    background-color: #004548;
+    color: #EAD2AC;
+    width: 63%;
+    padding: 1.5rem;
+}
+
+h5 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-decoration: underline;
+}
+
+.quote {
+    line-height: 2rem;
+    font-size: 1.1rem;
+}
+
+ul {
+    list-style: initial;
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+.review_rating-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.review_rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.review_rating h4 {
+    margin-right: 1.5rem;
+}
+
+.book_infos, .main_content div, .quotes, .cover {
+    border-radius: 0.5rem;
 }

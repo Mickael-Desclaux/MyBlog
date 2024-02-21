@@ -2,15 +2,54 @@
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
 @inherits MyBlog.WebApp.Components.Pages.ComponentsBase.ReviewBase
 
+
 @if (article != null)
 {
-    <h2>Titre : @article.BookTitle</h2>
-    <p>@article.BookResume</p>
-
-    <h3>Informations sur le livre</h3>
-    <div>
-        <p>Titre : @article.BookTitle</p>
-        <p>Auteur : @article.BookAuthor</p>
-        <img src="@article.BookCover" alt="Couverture du livre" />
+    <div id="container">
+        <div class="book_infos-container">
+            <img class="cover" src="@GetBookCover(article.BookCover)" alt="@article.BookTitle" />
+            <div class="book_infos">
+                <ul>
+                    <li><span class="book_infos_label">Title:</span> @article.BookTitle</li>
+                    <li><span class="book_infos_label">Author:</span> @article.BookAuthor</li>
+                    <li><span class="book_infos_label">Genre:</span> Add Genre</li>
+                    <li><span class="book_infos_label">Year:</span> Add Date</li>
+                    <li>@article.BookNumberOfPages pages</li>
+                </ul>
+            </div>
+        </div>
+        <div class="main_content">
+            <div class="review_content">
+                <h2>Review Title To Add In DB</h2>
+                <p>@article.TextSection</p>
+                <h3>Synopsis:</h3>
+                <p>@article.BookResume</p>
+                <div class="review_rating-container">
+                    <div class="review_rating">
+                        <h4>My Note: </h4>
+                        <MudRating ReadOnly="true"
+                                   SelectedValue="@article.MyNote"
+                                   FullIcon="@Icons.Material.Filled.Favorite"
+                                   EmptyIcon="@Icons.Material.Filled.FavoriteBorder"
+                                   Color="Color.Error"
+                                   Size="Size.Large" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    @if (article.Quotes != null)
+    {
+        <div class="quotes-container">
+            <div class="quotes">
+                <h5>Quotes</h5>
+                <ul>
+                    @foreach (var quote in article.Quotes)
+                    {
+                        <li class="quote">"@quote"</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
 }

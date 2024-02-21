@@ -18,6 +18,7 @@
 
     <ItemGroup>
       <Folder Include="wwwroot\Icons\" />
+      <Folder Include="wwwroot\Logo\" />
     </ItemGroup>
 
 </Project>

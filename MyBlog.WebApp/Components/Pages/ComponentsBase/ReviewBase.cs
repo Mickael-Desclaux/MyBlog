@@ -23,5 +23,10 @@ namespace MyBlog.WebApp.Components.Pages.ComponentsBase
                 Console.WriteLine("Appel via l'API");
             }
         }
+
+        protected string GetBookCover(byte[] imageBytes)
+        {
+            return $"data:image/jpeg;base64,{Convert.ToBase64String(imageBytes)}";
+        }
     }
 }
