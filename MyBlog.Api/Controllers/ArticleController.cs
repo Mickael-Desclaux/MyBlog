@@ -61,10 +61,14 @@ public class ArticleController(ApplicationDbContext dbContext) : ControllerBase
         articleToUpdate.BookAuthor = article.BookAuthor;
         articleToUpdate.BookTitle = article.BookTitle;
         articleToUpdate.BookNumberOfPages = article.BookNumberOfPages;
+        articleToUpdate.BookGenres = article.BookGenres;
+        articleToUpdate.BookYear = article.BookYear;
+        articleToUpdate.ReviewTitle = article.ReviewTitle;
         articleToUpdate.TextSection = article.TextSection;
         articleToUpdate.BookResume = article.BookResume;
         articleToUpdate.ReviewResume = article.ReviewResume;
         articleToUpdate.MyNote = article.MyNote;
+        articleToUpdate.IsFavorite = article.IsFavorite;
         articleToUpdate.Quotes = article.Quotes;
         articleToUpdate.UpdatedAt = DateTime.UtcNow;
 

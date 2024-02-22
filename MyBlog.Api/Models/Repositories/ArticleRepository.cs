@@ -10,11 +10,14 @@ public static class ArticleRepository
             TagIds = [1, 2], 
             BookAuthor = "test", 
             BookTitle = "Test", 
-            BookNumberOfPages = 400, 
-            BookCover = ConvertImageToBytes("C:\\Users\\Mickaël\\Pictures\\Camera Roll\\Pdp.jpg"), 
+            BookNumberOfPages = 400,
+            BookYear = 1996,
+            BookCover = ConvertImageToBytes("C:\\Users\\Mickaël\\Pictures\\Camera Roll\\Pdp.jpg"),
+            ReviewTitle = "An amazing book",
             TextSection = "hfdgbhgdf dfgihdfg", 
             ReviewResume = "ikjfgdnf",
-            MyNote = 5, 
+            MyNote = 5,
+            IsFavorite = true,
             Quotes = ["dfgdfg", "dfgdfg"]
         },
         new Article
@@ -23,11 +26,14 @@ public static class ArticleRepository
             TagIds = [1, 2], 
             BookAuthor = "test", 
             BookTitle = "Test", 
-            BookNumberOfPages = 400, 
+            BookNumberOfPages = 400,
+            BookYear = 1996,
             BookCover = ConvertImageToBytes("C:\\Users\\Mickaël\\Pictures\\Camera Roll\\Pdp.jpg"),
+            ReviewTitle = "An amazing book",
             TextSection = "hfhgdgbhgdf dfgihdfg", 
             ReviewResume = "ikjfgddgnf",
-            MyNote = 4, 
+            MyNote = 4,
+            IsFavorite = false,
             Quotes = ["dfgdfffg", "dfgdfgff"]
         }
     };

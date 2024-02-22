@@ -12,15 +12,18 @@
                 <ul>
                     <li><span class="book_infos_label">Title</span>: @article.BookTitle</li>
                     <li><span class="book_infos_label">Author</span>: @article.BookAuthor</li>
-                    <li><span class="book_infos_label">Genre</span>: Add Genre</li>
-                    <li><span class="book_infos_label">Year</span>: Add Date</li>
+                    @if (article.BookGenres != null && article.BookGenres.Any())
+                    {
+                        <li><span class="book_infos_label">Genre</span>: @string.Join(", ", article.BookGenres)</li>
+                    }
+                    <li><span class="book_infos_label">Year</span>: @article.BookYear</li>
                     <li>@article.BookNumberOfPages pages</li>
                 </ul>
             </div>
         </div>
         <div class="main_content">
             <div class="review_content">
-                <h2>Review Title To Add In DB</h2>
+                <h2>@article.ReviewTitle</h2>
                 <p>@article.TextSection</p>
                 <h3>Synopsis:</h3>
                 <p>@article.BookResume</p>

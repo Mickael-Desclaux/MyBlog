@@ -14,12 +14,60 @@ public class CreateArticleBase : ComponentBase
     
     protected string NewQuote = string.Empty;
 
+    public List<string> Genres = new List<string> { 
+        "Fantasy", 
+        "Science Fiction",
+        "Dystopian",
+        "Mystery", 
+        "Romance", 
+        "Horror", 
+        "Action & Aventure", 
+        "Thriller", 
+        "Mythology",
+        "Historical Fiction",
+        "Contemporary Fiction",
+        "Graphic Novel",
+        "Young Adult",
+        "Biography",
+        "Art",
+        "History",
+    };
+
+    public List<string> SelectedGenres = new List<string>();
+
+    public Dictionary<string, bool> genreChecked = new Dictionary<string, bool>();
+
     #endregion
 
     #region Functions
-    
+
+    protected override void OnInitialized()
+    {
+        foreach (var genre in Genres)
+        {
+            genreChecked.Add(genre, false);
+        }
+    }
+
     protected async Task HandleValidSubmit()
     {
+        SelectedGenres.Clear();
+        foreach (var genre in genreChecked)
+        {
+            if (genre.Value)
+            {
+                SelectedGenres.Add(genre.Key);
+            }
+        }
+
+        // Assurez-vous que BookGenres est initialisé
+        Article.BookGenres = Article.BookGenres ?? new List<string?>();
+        Article.BookGenres.Clear();
+        foreach (var genre in SelectedGenres)
+        {
+            Article.BookGenres.Add(genre);
+        }
+
         await ArticleService.CreateArticleAsync(Article);
     }
 

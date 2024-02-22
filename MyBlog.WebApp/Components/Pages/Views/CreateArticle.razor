@@ -10,18 +10,30 @@
         <InputText id="bookTitle" @bind-Value="Article.BookTitle" /><br>
         <label for="bookAuthor">Author</label>
         <InputText id="bookAuthor" @bind-Value="Article.BookAuthor" /><br>
-        <label for="bookCover">Cover</label>
-        <InputFile id="bookCover" OnChange="HandleFileUpload" /><br>
-        <label for="bookResume">Resume</label>
-        <InputText id="bookResume" @bind-Value="Article.BookResume" /><br>
         <label for="bookNumOfPages">Pages</label>
         <InputNumber id="bookNumOfPages" @bind-Value="Article.BookNumberOfPages" /><br>
+        @foreach (var genre in Genres)
+        {
+            <div>
+                <InputCheckbox @bind-Value="@genreChecked[genre]" /> @genre
+            </div>
+        }
+        <label for="bookYear">Year</label>
+        <InputNumber id="bookYear" @bind-Value="Article.BookYear" /><br>
+        <label for="bookResume">Resume</label>
+        <InputText id="bookResume" @bind-Value="Article.BookResume" /><br>
+        <label for="bookCover">Cover</label>
+        <InputFile id="bookCover" OnChange="HandleFileUpload" /><br>
+        <label for="reviewTitle">Review Title</label>
+        <InputText id="reviewTitle" @bind-Value="Article.ReviewTitle" /><br>
         <label for="textSection">Review</label>
         <InputText id="textSection" @bind-Value="Article.TextSection" /><br>
         <label for="reviewResume">Review Resume</label>
         <InputText id="reviewResume" @bind-Value="Article.ReviewResume" /><br>
         <label for="myNote">Note</label>
         <InputNumber id="myNote" @bind-Value="Article.MyNote" /><br>
+        <label for="isFavorite">Favorite book?</label>
+        <InputCheckbox id="isFavorite" @bind-Value="Article.IsFavorite" /><br>
         @if (Article.Quotes != null && Article.Quotes.Count > 0)
         {
             foreach (var quote in Article.Quotes)
