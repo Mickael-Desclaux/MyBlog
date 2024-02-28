@@ -25,6 +25,15 @@ public class ArticleService(HttpClient httpClient)
         var articles = await response.Content.ReadFromJsonAsync<List<Article>>();
         return articles ?? new List<Article>();
     }
+
+    public async Task<List<Article>> GetFavoriteArticlesAsync()
+    {
+        var response = await httpClient.GetAsync("api/article/favorites");
+        response.EnsureSuccessStatusCode();
+
+        var articles = await response.Content.ReadFromJsonAsync<List<Article>>();
+        return articles ?? new List<Article>();
+    }
     
     public async Task CreateArticleAsync(Article article)
     {

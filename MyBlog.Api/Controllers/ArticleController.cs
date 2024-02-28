@@ -35,6 +35,16 @@ public class ArticleController(ApplicationDbContext dbContext) : ControllerBase
         return Ok(HttpContext.Items["article"]);
     }
 
+    [HttpGet("favorites")]
+    public ActionResult<IEnumerable<Article>> GetFavorites()
+    {
+        var favoriteArticles = dbContext.Articles
+                                        .Where(a => a.IsFavorite)
+                                        .ToList();
+        return Ok(favoriteArticles);
+    }
+
+
     [HttpPost]
     // [Authorize]
     [ArticleValidateCreateFilter]

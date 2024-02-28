@@ -2,17 +2,37 @@
 @inherits MyBlog.WebApp.Components.Pages.ComponentsBase.EditArticleBase
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
 
-<h3>Edit an article</h3>
+<h2>Edit an article</h2>
 
 <EditForm Model="@Article" OnValidSubmit="EditArticle" FormName="articleForm">
-    <InputText id="bookTitle" @bind-Value="Article.BookTitle"/><br>
-    <InputText id="bookAuthor" @bind-Value="Article.BookAuthor"/><br>
-    <InputFile OnChange="HandleFileUpload" /><br>
-    <InputText id="bookResume" @bind-Value="Article.BookResume"/><br>
-    <InputNumber id="bookNumOfPages" @bind-Value="Article.BookNumberOfPages"/><br>
-    <InputText id="textSection" @bind-Value="Article.TextSection"/><br>
-    <InputText id="reviewResume" @bind-Value="Article.ReviewResume"/><br>
-    <InputNumber id="myNote" @bind-Value="Article.MyNote"/><br>
+    <label for="bookTitle">Book Title</label>
+    <InputText id="bookTitle" @bind-Value="Article.BookTitle" /><br>
+    <label for="bookAuthor">Author</label>
+    <InputText id="bookAuthor" @bind-Value="Article.BookAuthor" /><br>
+    <label for="bookNumOfPages">Pages</label>
+    <InputNumber id="bookNumOfPages" @bind-Value="Article.BookNumberOfPages" /><br>
+    @foreach (var genre in Genres)
+    {
+        <div>
+            <InputCheckbox @bind-Value="@genreChecked[genre]" /> @genre
+        </div>
+    }
+    <label for="bookYear">Year</label>
+    <InputNumber id="bookYear" @bind-Value="Article.BookYear" /><br>
+    <label for="bookResume">Resume</label>
+    <InputText id="bookResume" @bind-Value="Article.BookResume" /><br>
+    <label for="bookCover">Cover</label>
+    <InputFile id="bookCover" OnChange="HandleFileUpload" /><br>
+    <label for="reviewTitle">Review Title</label>
+    <InputText id="reviewTitle" @bind-Value="Article.ReviewTitle" /><br>
+    <label for="textSection">Review</label>
+    <InputText id="textSection" @bind-Value="Article.TextSection" /><br>
+    <label for="reviewResume">Review Resume</label>
+    <InputText id="reviewResume" @bind-Value="Article.ReviewResume" /><br>
+    <label for="myNote">Note</label>
+    <InputNumber id="myNote" @bind-Value="Article.MyNote" /><br>
+    <label for="isFavorite">Favorite book?</label>
+    <InputCheckbox id="isFavorite" @bind-Value="Article.IsFavorite" /><br>
     @if (Article.Quotes != null && Article.Quotes.Count > 0)
     {
         foreach (var quote in Article.Quotes)
@@ -23,11 +43,11 @@
             </div>
         }
     }
-    
-    <InputText id="newQuote" @bind-Value="NewQuote"/>
-    <button type="button" @onclick="AddQuote">Add a new quote</button><br/>
+    <label for="newQuote">New Quote</label>
+    <InputText id="newQuote" @bind-Value="NewQuote" />
+    <button type="button" @onclick="AddQuote">Add a new quote</button><br />
 
-    <button type="submit">Update</button>
+    <button type="submit">Edit</button>
 </EditForm>
 
 
@@ -41,7 +61,7 @@
             using (var memoryStream = new MemoryStream())
             {
                 await file.OpenReadStream().CopyToAsync(memoryStream);
-                Article.BookCover = memoryStream.ToArray(); // Assurez-vous que votre modèle peut stocker les données du fichier comme un tableau de bytes
+                Article.BookCover = memoryStream.ToArray();
             }
         }
     }

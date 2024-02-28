@@ -60,7 +60,6 @@ public class CreateArticleBase : ComponentBase
             }
         }
 
-        // Assurez-vous que BookGenres est initialisé
         Article.BookGenres = Article.BookGenres ?? new List<string?>();
         Article.BookGenres.Clear();
         foreach (var genre in SelectedGenres)

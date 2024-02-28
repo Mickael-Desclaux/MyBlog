@@ -4,6 +4,24 @@
     font-size: 2.5rem;
     color: #202020;
     text-align: center;
+    margin-bottom: 2rem;
+}
+
+.favorite_books_intro-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #202020;
+}
+
+.favorite_books_intro {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 70%;
+    font-size: 1.2rem;
+    padding: 2rem;
+    color: #EAD2AC;
 }
 
 .articles_list {
@@ -16,7 +34,7 @@
     display: flex;
     align-items: flex-start;
     text-align: left;
-    max-width: 80vw;
+    width: 80vw;
     margin-bottom: 1rem;
     flex-direction: row;
     border: 1px solid black;
@@ -75,15 +93,6 @@
     right: 50px;
     font-size: 5rem;
     color: red;
-}
-
-.border {
-    font-size: 1.6rem;
-    display: grid;
-    place-items: center;
-    min-height: 200px;
-    border: 8px solid;
-    padding: 1rem;
 }
 
 @media (max-width: 819px) {

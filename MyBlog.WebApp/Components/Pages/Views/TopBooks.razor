@@ -1,0 +1,51 @@
+﻿@page "/Top_Books"
+@using MyBlog.WebApp.Services
+@inherits MyBlog.WebApp.Components.Pages.ComponentsBase.TopBooksBase
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+
+<h2>My Favorite Books</h2>
+
+<div class="favorite_books_intro-container">
+    <p class="favorite_books_intro">
+        On this page you will find a list of the best books that i have read,
+        the ones that really marked me and those I could talk about for hours (or days if you don't stop me).
+        Those are the books that I recommend to anyone who wants to live unbelivable adventures,
+        to meet awesome characters or just escaping reality and being part of a great journey.
+    </p>
+</div>
+
+<div class="articles_list">
+    <div class="articles_list-container">
+        @foreach (var article in _articleService.Articles)
+        {
+            <div class="article">
+                <NavLink href="@($"/review/{article.ArticleId}")">
+                    <img class="book_img" src="@GetBookCover(article.BookCover)" alt="@article.BookTitle" />
+                </NavLink>
+                <div class="book_infos">
+                    <h3><a href="@($"/review/{article.ArticleId}")">@article.BookTitle by @article.BookAuthor</a></h3>
+                    <p>@article.ReviewResume</p>
+                    <div class="admin_btn">
+                        @if (IsUserAuthenticated)
+                        {
+                            <button @onclick="() => Callback(article)">Edit</button>
+                            <button @onclick="() => OnDeleteArticle(article)">Delete</button>
+                        }
+                    </div>
+                    <div class="rating">
+                        <MudRating ReadOnly="true"
+                                   SelectedValue="@article.MyNote"
+                                   FullIcon="@Icons.Material.Filled.Favorite"
+                                   EmptyIcon="@Icons.Material.Filled.FavoriteBorder"
+                                   Color="Color.Error"
+                                   Size="Size.Large" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<button>
+    <a href="/CreateArticle" asp-controller="article" asp-action="CreateArticle"><i class='bx bxs-plus-circle'></i></a>
+</button>
