@@ -14,6 +14,8 @@ public class ArticlesBase : ComponentBase
 
     protected bool IsUserAuthenticated { get; private set; }
 
+    protected string searchQuery = string.Empty;
+
     #endregion
 
     #region Functions
@@ -42,6 +44,21 @@ public class ArticlesBase : ComponentBase
     protected string GetBookCover(byte[] imageBytes)
     {
         return $"data:image/jpeg;base64,{Convert.ToBase64String(imageBytes)}";
+    }
+
+    protected IEnumerable<Article> FilteredArticles => _articleService.Articles.Where(article =>
+    string.IsNullOrEmpty(searchQuery) ||
+    article.BookTitle.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+    article.BookAuthor.Contains(searchQuery, StringComparison.OrdinalIgnoreCase));
+
+    protected void FilterArticles()
+    {
+        StateHasChanged();
+    }
+
+    protected void ResetFilter()
+    {
+        searchQuery = string.Empty;
     }
 
     #endregion

@@ -24,6 +24,17 @@
     color: #EAD2AC;
 }
 
+.book_infos_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.favorite_icon {
+    width: 80px;
+}
+
 .articles_list {
     display: flex;
     justify-content: center;

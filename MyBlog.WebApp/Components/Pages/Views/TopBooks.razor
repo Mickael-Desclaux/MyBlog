@@ -23,7 +23,10 @@
                     <img class="book_img" src="@GetBookCover(article.BookCover)" alt="@article.BookTitle" />
                 </NavLink>
                 <div class="book_infos">
-                    <h3><a href="@($"/review/{article.ArticleId}")">@article.BookTitle by @article.BookAuthor</a></h3>
+                    <div class="book_infos_title">
+                        <h3><a href="@($"/review/{article.ArticleId}")">@article.BookTitle by @article.BookAuthor</a></h3>
+                        <img class="favorite_icon" src="/Icons/rating.png" />
+                    </div>
                     <p>@article.ReviewResume</p>
                     <div class="admin_btn">
                         @if (IsUserAuthenticated)

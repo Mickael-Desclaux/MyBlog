@@ -5,16 +5,32 @@
 
 <h2>Articles</h2>
 
+<div class="search-container">
+    <div class="search">
+        <input class="search_input" type="text" @bind="searchQuery" placeholder="Search a book, an author..." />
+        <button class="search_btn" @onclick="FilterArticles">Search</button>
+        <button class="search_btn" @onclick="ResetFilter">Reset</button>
+    </div>
+</div>
+
+
 <div class="articles_list">
     <div class="articles_list-container">
-        @foreach (var article in _articleService.Articles)
+
+        @foreach (var article in FilteredArticles)
         {
             <div class="article">
                 <NavLink href="@($"/review/{article.ArticleId}")">
                     <img class="book_img" src="@GetBookCover(article.BookCover)" alt="@article.BookTitle" />
                 </NavLink>
                 <div class="book_infos">
-                    <h3><a href="@($"/review/{article.ArticleId}")">@article.BookTitle by @article.BookAuthor</a></h3>
+                    <div class="book_infos_title">
+                        <h3><a href="@($"/review/{article.ArticleId}")">@article.BookTitle by @article.BookAuthor</a></h3>
+                        @if (article.IsFavorite)
+                        {
+                            <img class="favorite_icon" src="/Icons/rating.png" />
+                        }
+                    </div>
                     <p>@article.ReviewResume</p>
                     <div class="admin_btn">
                         @if (IsUserAuthenticated)

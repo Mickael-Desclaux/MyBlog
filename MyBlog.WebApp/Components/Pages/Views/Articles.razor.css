@@ -59,6 +59,18 @@
         flex-grow: 1;
     }
 
+.book_infos_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.favorite_icon {
+    width: 80px;
+    margin-right: 50px;
+}
+
 .admin_btn {
     padding: 1rem 0 1rem 0;
 }
@@ -86,6 +98,30 @@
     padding: 1rem;
 }
 
+.search_container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.search_input {
+    width: 30%;
+}
+
+.search_btn {
+    background-color: #004548;
+    color: #EAD2AC;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    border-radius: 0.2rem;
+}
+
 @media (max-width: 819px) {
     .article {
         display: flex;
@@ -98,7 +134,7 @@
     }
 
     .book_img {
-        max-width: 50%;
+        width: 100%;
         margin: 1rem;
     }
 
@@ -121,5 +157,9 @@
         color: red;
         bottom: 25px;
         right: 25px;
+    }
+
+    .search_input {
+        width: 100%;
     }
 }
