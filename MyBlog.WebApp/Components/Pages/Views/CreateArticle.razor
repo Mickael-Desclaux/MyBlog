@@ -4,52 +4,57 @@
 
 <h2>Post an article</h2>
 
-<div>
-    <EditForm Model="@Article" OnValidSubmit="HandleValidSubmit" FormName="articleForm">
-        <label for="bookTitle">Book Title</label>
-        <InputText id="bookTitle" @bind-Value="Article.BookTitle" /><br>
-        <label for="bookAuthor">Author</label>
-        <InputText id="bookAuthor" @bind-Value="Article.BookAuthor" /><br>
-        <label for="bookNumOfPages">Pages</label>
-        <InputNumber id="bookNumOfPages" @bind-Value="Article.BookNumberOfPages" /><br>
-        @foreach (var genre in Genres)
-        {
-            <div>
-                <InputCheckbox @bind-Value="@genreChecked[genre]" /> @genre
-            </div>
-        }
-        <label for="bookYear">Year</label>
-        <InputNumber id="bookYear" @bind-Value="Article.BookYear" /><br>
-        <label for="bookResume">Resume</label>
-        <InputText id="bookResume" @bind-Value="Article.BookResume" /><br>
-        <label for="bookCover">Cover</label>
-        <InputFile id="bookCover" OnChange="HandleFileUpload" /><br>
-        <label for="reviewTitle">Review Title</label>
-        <InputText id="reviewTitle" @bind-Value="Article.ReviewTitle" /><br>
-        <label for="textSection">Review</label>
-        <InputText id="textSection" @bind-Value="Article.TextSection" /><br>
-        <label for="reviewResume">Review Resume</label>
-        <InputText id="reviewResume" @bind-Value="Article.ReviewResume" /><br>
-        <label for="myNote">Note</label>
-        <InputNumber id="myNote" @bind-Value="Article.MyNote" /><br>
-        <label for="isFavorite">Favorite book?</label>
-        <InputCheckbox id="isFavorite" @bind-Value="Article.IsFavorite" /><br>
-        @if (Article.Quotes != null && Article.Quotes.Count > 0)
-        {
-            foreach (var quote in Article.Quotes)
+<div class="form-container">
+    <div class="form">
+        <EditForm Model="@Article" OnValidSubmit="HandleValidSubmit" FormName="articleForm" style="width: 80%; display: flex; justify-content: center; flex-direction: column;">
+            <label for="bookTitle">Book Title </label> <br />
+            <InputText id="bookTitle" @bind-Value="Article.BookTitle" style="width: 50%; padding: 0.3rem;" /><br>
+            <label for="bookAuthor">Author </label> <br />
+            <InputText id="bookAuthor" @bind-Value="Article.BookAuthor" style="width: 50%; padding: 0.3rem;" /><br>
+            <label for="bookNumOfPages">Pages </label> <br />
+            <InputNumber id="bookNumOfPages" @bind-Value="Article.BookNumberOfPages" style="width: 50%; padding: 0.3rem;" /><br>
+            <label style="margin-bottom: 1rem;">Genres </label>
+            @foreach (var genre in Genres)
             {
-                <div>
-                    <span>@quote</span>
-                    <button type="button" @onclick="() => RemoveQuote(quote)">Delete quote</button>
+                <div class="book_genre">
+                    <InputCheckbox @bind-Value="@genreChecked[genre]" /> @genre
                 </div>
             }
-        }
-        <label for="newQuote">New Quote</label>
-        <InputText id="newQuote" @bind-Value="NewQuote" />
-        <button type="button" @onclick="AddQuote">Add a new quote</button><br />
+            <label for="bookYear" style="margin-top: 1rem;">Year </label> <br />
+            <InputNumber id="bookYear" @bind-Value="Article.BookYear" style="width: 50%; padding: 0.3rem;" /><br>
+            <label for="bookResume">Resume </label> <br />
+            <InputTextArea id="bookResume" @bind-Value="Article.BookResume" style="width: 85%; height: 150px; padding: 0.3rem; line-height: 1.2rem;" /><br>
+            <label for="bookCover" style="margin-bottom: 1rem;">Cover </label>
+            <InputFile id="bookCover" OnChange="HandleFileUpload" /><br>
+            <label for="reviewTitle">Review Title </label> <br />
+            <InputText id="reviewTitle" @bind-Value="Article.ReviewTitle" style="width: 50%; padding: 0.5rem;" /><br>
+            <label for="textSection">Review </label> <br />
+            <InputTextArea id="textSection" @bind-Value="Article.TextSection" style="width: 85%; height: 350px; padding: 0.5rem; line-height: 1.2rem;" /><br>
+            <label for="reviewResume">Review Resume </label> <br />
+            <InputTextArea id="reviewResume" @bind-Value="Article.ReviewResume" style="width: 85%; height: 150px; padding: 0.5rem; line-height: 1.2rem;" /><br>
+            <label for="myNote">Note </label> <br />
+            <InputNumber id="myNote" @bind-Value="Article.MyNote" style="width: 50%; padding: 0.3rem;" /><br>
+            <div style="margin-bottom: 1rem;">
+                <label for="isFavorite" style="margin-right: 1rem;">Favorite book? </label>
+                <InputCheckbox id="isFavorite" @bind-Value="Article.IsFavorite" /><br>
+            </div>
+            <label for="newQuote" style="margin-bottom: 1rem;">Quotes </label>
+            @if (Article.Quotes != null && Article.Quotes.Count > 0)
+            {
+                foreach (var quote in Article.Quotes)
+                {
+                    <div class="quotes" style="display: flex; flex-direction: row; align-items: center; margin-bottom: 1rem;">
+                        <span class="quote">@quote</span>
+                        <button type="button" class="delete_button" @onclick="() => RemoveQuote(quote)">Delete quote</button>
+                    </div>
+                }
+            }
+            <InputText id="newQuote" @bind-Value="NewQuote" style="width: 85%; padding: 0.3rem;" placeholder="Add a new quote..." /> <br />
+            <button type="button" @onclick="AddQuote" style="margin: 1rem 0 1rem 0;">Add a new quote</button><br />
 
-        <button type="submit">Create</button>
-    </EditForm>
+            <button type="submit">Create</button>
+        </EditForm>
+    </div>
 </div>
 
 @code {

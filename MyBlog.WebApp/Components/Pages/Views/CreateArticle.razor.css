@@ -1,3 +1,49 @@
 ﻿h2 {
-    padding-top: 150px;
+    padding-top: 10rem;
+    text-align: center;
+    font-size: 2.5rem;
+    color: #202020;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+div.form-container div.form {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0 2rem 0;
+}
+
+button {
+    border: 1px solid black;
+    padding: 0.3rem;
+    color: #EAD2AC;
+    background-color: #004548;
+    border-radius: 0.2rem;
+    width: 8rem;
+}
+
+label {
+    text-decoration: underline;
+    color: black;
+    font-size: 1.2rem;
+}
+
+span {
+    color: black;
+}
+
+.book_genre {
+    color: black;
+    margin-bottom: 0.5rem;
+}
+
+.quotes {
+    display: flex;
+}
+
+.delete_button {
+    margin-left: 1rem;
 }
