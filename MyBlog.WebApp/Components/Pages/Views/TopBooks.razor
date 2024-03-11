@@ -3,6 +3,11 @@
 @inherits MyBlog.WebApp.Components.Pages.ComponentsBase.TopBooksBase
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
 
+<ul class="breadcrumb">
+    <li><a href="/"><img src="/Icons/home.png" class="breadcrumb_icons" /> Home</a></li>
+    <li>My favorites</li>
+</ul>
+
 <h2>My Favorite Books</h2>
 
 <div class="favorite_books_intro-container">

@@ -2,6 +2,12 @@
 @inherits MyBlog.WebApp.Components.Pages.ComponentsBase.CreateArticleBase
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
 
+<ul class="breadcrumb">
+    <li><a href="/"><img src="/Icons/home.png" class="breadcrumb_icons"/> Home</a></li>
+    <li><a href="/articles">Articles</a></li>
+    <li>Add Article</li>
+</ul>
+
 <h2>Post an article</h2>
 
 <div class="form-container">
@@ -71,5 +77,4 @@
             }
         }
     }
-
 }

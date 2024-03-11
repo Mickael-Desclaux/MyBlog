@@ -21,7 +21,7 @@
             @foreach (var article in _articleService.Articles)
             {
                 <div class="article_card">
-                    <h4><b>@article.BookTitle by @article.BookAuthor</b></h4>
+                    <h4><b>@article.BookTitle</b></h4>
                     <div class="article_card-container">
                         <NavLink href="@($"/review/{article.ArticleId}")">
                             <img class="book_cover" src="@GetBookCover(article.BookCover)" alt="Cover" />

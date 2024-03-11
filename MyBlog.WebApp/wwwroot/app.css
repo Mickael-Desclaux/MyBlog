@@ -60,8 +60,48 @@ body {
     font-family: 'Crimson Text';
 }
 
+.breadcrumb {
+    margin-top: 9rem;
+}
+
+.breadcrumb_icons {
+    width: 1rem;
+}
+
+ul.breadcrumb {
+    padding: 0px 16px;
+    list-style: none;
+}
+
+    ul.breadcrumb li {
+        display: inline;
+        font-size: 18px;
+    }
+
+        ul.breadcrumb li + li:before {
+            padding: 8px;
+            color: #202020;
+            content: "/\00a0";
+        }
+
+        ul.breadcrumb li a {
+            color: #202020;
+            text-decoration: none;
+        }
+
+            ul.breadcrumb li a:hover {
+                text-decoration: underline;
+            }
+
 footer {
     width: 100%;
     background-color: #202020;
     margin-top: auto;
+}
+
+@media (max-width: 820px) {
+    .breadcrumb {
+        margin-top: 5rem;
+        margin-bottom: 1rem;
+    }
 }
