@@ -79,7 +79,7 @@ ul.breadcrumb {
     }
 
         ul.breadcrumb li + li:before {
-            padding: 8px;
+            padding: 1px;
             color: #202020;
             content: "/\00a0";
         }

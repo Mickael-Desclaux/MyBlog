@@ -48,7 +48,6 @@
     margin-bottom: 1rem;
     flex-direction: row;
     border: 1px solid black;
-    border-radius: 0.5rem;
     color: #EAD2AC;
     background-color: #004548;
     padding: 1rem;
@@ -106,25 +105,37 @@
 }
 
 @media (max-width: 819px) {
+    h2 {
+        margin-top: 1.5rem;
+    }
+
     .article {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        width: auto;
-        padding-top: 2rem;
-        margin: 1rem;
+        padding-top: 1rem;
+        margin: 0 0 1rem 0;
     }
 
     .book_img {
         max-width: 50%;
-        margin: 1rem;
+        margin: 0.5rem;
     }
 
     .book_infos {
         padding: 0;
         margin-bottom: 1rem;
         width: 80%;
+    }
+
+    .book_infos_title {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .favorite_icon {
+        margin: 0;
     }
 
     .admin_btn {
