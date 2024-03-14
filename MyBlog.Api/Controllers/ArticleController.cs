@@ -46,7 +46,7 @@ public class ArticleController(ApplicationDbContext dbContext) : ControllerBase
 
 
     [HttpPost]
-    // [Authorize]
+    [Authorize]
     [ArticleValidateCreateFilter]
     public ActionResult<Article> Create([FromBody] Article article)
     {
@@ -59,7 +59,7 @@ public class ArticleController(ApplicationDbContext dbContext) : ControllerBase
     }
 
     [HttpPut("{id:int}")]
-    // [Authorize]
+    [Authorize]
     [TypeFilter(typeof(ArticleValidateIdFilterAttribute))]
     [ArticleValidateUpdateFilter]
     [TypeFilter(typeof(ArticleHandleUpdateExceptionsFilterAttribute))]
@@ -88,7 +88,7 @@ public class ArticleController(ApplicationDbContext dbContext) : ControllerBase
     }
 
     [HttpDelete("{id:int}")]
-    // [Authorize]
+    [Authorize]
     [TypeFilter(typeof(ArticleValidateIdFilterAttribute))]
     public ActionResult<Article> Delete(int id)
     {
