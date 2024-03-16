@@ -1,8 +1,4 @@
 ﻿@rendermode @(new InteractiveServerRenderMode(prerender: false))
-@using MyBlog.WebApp.Model
-@using MyBlog.WebApp.Services
-@using Microsoft.AspNetCore.Components.Authorization
-@inject AuthenticationService AuthService
 
 <header>
     <h1 id="top">
@@ -24,19 +20,3 @@
         <a href="/top_books">My Favorites</a>
     </nav>
 </header>
-
-@code {
-    protected bool IsUserAuthenticated { get; private set; }
-
-    private async Task Logout()
-    {
-        await AuthService.Logout();
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        var isAuthenticated = await AuthService.IsUserAuthenticated();
-        IsUserAuthenticated = isAuthenticated;
-
-    }
-}

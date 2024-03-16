@@ -23,13 +23,16 @@
     padding: 2rem;
 }
 
-.top_btn {
+.top_btn, .logout_btn {
     cursor: pointer;
-    border-radius: 5px;
     text-align: center;
 }
 
-#top_btn {
+#top_btn, .logout_btn {
     color: #EAD2AC;
     font-size: 1.2rem;
+}
+
+.logout_btn {
+    margin-bottom: 1rem;
 }

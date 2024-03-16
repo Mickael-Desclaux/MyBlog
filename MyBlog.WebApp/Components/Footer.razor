@@ -1,4 +1,9 @@
-﻿<h6>Find Me On My Socials</h6>
+﻿@rendermode @(new InteractiveServerRenderMode(prerender: false))
+@using MyBlog.WebApp.Services
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationService AuthService
+
+<h6>Find Me On My Socials</h6>
 
 <div class="socials-container">
     <div class="socials">
@@ -13,3 +18,26 @@
         <a id="top_btn" href="#top">Back To Top</a>
     </div>
 </div>
+
+@if (IsUserAuthenticated)
+{
+    <div class="logout_btn">
+        <button @onclick="Logout">Logout</button>
+    </div>
+}
+
+@code {
+    protected bool IsUserAuthenticated { get; private set; }
+
+    private async Task Logout()
+    {
+        await AuthService.Logout();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var isAuthenticated = await AuthService.IsUserAuthenticated();
+        IsUserAuthenticated = isAuthenticated;
+
+    }
+}
