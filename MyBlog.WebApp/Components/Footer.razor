@@ -1,7 +1,6 @@
 ﻿@rendermode @(new InteractiveServerRenderMode(prerender: false))
 @using MyBlog.WebApp.Services
-@using Microsoft.AspNetCore.Components.Authorization
-@inject AuthenticationService AuthService
+@inherits FooterBase
 
 <h6>Find Me On My Socials</h6>
 
@@ -19,25 +18,9 @@
     </div>
 </div>
 
-@if (IsUserAuthenticated)
+@if (AuthenticationService.isAuthenticated)
 {
     <div class="logout_btn">
         <button @onclick="Logout">Logout</button>
     </div>
-}
-
-@code {
-    protected bool IsUserAuthenticated { get; private set; }
-
-    private async Task Logout()
-    {
-        await AuthService.Logout();
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        var isAuthenticated = await AuthService.IsUserAuthenticated();
-        IsUserAuthenticated = isAuthenticated;
-
-    }
 }

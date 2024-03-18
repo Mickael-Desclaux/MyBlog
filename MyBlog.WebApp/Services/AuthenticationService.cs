@@ -5,6 +5,8 @@ namespace MyBlog.WebApp.Services;
 
 public class AuthenticationService(ILocalStorageService localStorage, HttpClient httpClient)
 {
+    public static bool isAuthenticated { get; set; }
+
     public async Task<bool> Login(string email, string password)
     {
         var response = await httpClient.PostAsJsonAsync("login", new { email, password });

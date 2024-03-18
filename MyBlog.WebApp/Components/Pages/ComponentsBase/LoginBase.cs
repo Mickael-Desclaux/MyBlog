@@ -15,6 +15,8 @@ public class LoginBase : ComponentBase
     protected async Task LoginAsync()
     {
         var result = await _authenticationService.Login(user.Email, user.Password);
+        AuthenticationService.isAuthenticated = result;
+        Console.WriteLine(result);
         if (!result)
         {
             return;
