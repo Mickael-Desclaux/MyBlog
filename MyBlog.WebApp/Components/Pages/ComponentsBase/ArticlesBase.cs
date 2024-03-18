@@ -47,9 +47,10 @@ public class ArticlesBase : ComponentBase
     }
 
     protected IEnumerable<Article> FilteredArticles => _articleService.Articles.Where(article =>
-    string.IsNullOrEmpty(searchQuery) ||
     article.BookTitle.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
     article.BookAuthor.Contains(searchQuery, StringComparison.OrdinalIgnoreCase));
+
+    //in case of a bug in search bar : string.IsNullOrEmpty(searchQuery)
 
     protected void FilterArticles()
     {

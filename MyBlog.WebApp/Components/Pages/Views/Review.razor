@@ -5,7 +5,10 @@
 <ul class="breadcrumb">
     <li><a href="/"><img src="/Icons/home.png" class="breadcrumb_icons" /> Home</a></li>
     <li><a href="/articles">Articles</a></li>
-    <li>@article.BookTitle</li>
+    @if (article != null)
+    {
+        <li>@article.BookTitle</li>
+    }
 </ul>
 
 @if (article != null)

@@ -15,8 +15,15 @@ namespace MyBlog.WebApp.Components.Pages.ComponentsBase
 
         protected override async Task OnInitializedAsync()
         {
-            article = _articleService.Articles.FirstOrDefault(a => a.ArticleId == id);
-            
+            if (_articleService.Articles.Count == 0)
+            {
+                var articles = await _articleService.GetAllArticlesAsync();
+                _articleService.Articles = articles;
+            }
+
+            Console.WriteLine(_articleService.Articles.Count);
+            article = _articleService.Articles.First(a => a.ArticleId == id);
+
             if (article == null)
             {
                 article = await _articleService.GetArticleByIdAsync(id);
