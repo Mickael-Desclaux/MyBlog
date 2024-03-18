@@ -35,7 +35,7 @@
 }
 
 .last_readings-container {
-    width: 90%;
+    width: 90vw;
     padding-top: 2rem;
     padding-bottom: 1.5rem;
     margin-top: 2rem;
@@ -44,6 +44,7 @@
     color: #EAD2AC;
     background-color: #004548;
     overflow-x: auto;
+    border-radius: 0.2rem;
 }
 
 .articles-container {

@@ -10,6 +10,8 @@ public class CreateArticleBase : ComponentBase
 
     [Inject] private ArticleService ArticleService { get; init; } = default!;
 
+    [Inject] protected NavigationManager NavigationManager { get; set; } = default!;
+
     protected Article Article = new();
     
     protected string NewQuote = string.Empty;
@@ -68,6 +70,8 @@ public class CreateArticleBase : ComponentBase
         }
 
         await ArticleService.CreateArticleAsync(Article);
+
+        NavigationManager.NavigateTo("/articles");
     }
 
     protected async Task EditArticle()

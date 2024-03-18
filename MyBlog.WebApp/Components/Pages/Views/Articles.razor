@@ -1,5 +1,8 @@
 ﻿@page "/Articles"
 @inherits MyBlog.WebApp.Components.Pages.ComponentsBase.ArticlesBase
+@using MyBlog.WebApp.Services
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationService AuthService
 
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
 
@@ -58,6 +61,20 @@
     </div>
 </div>
 
-<button>
-    <a href="/CreateArticle" asp-controller="article" asp-action="CreateArticle"><i class='bx bxs-plus-circle'></i></a>
-</button>
+@if (IsUserAuthenticated)
+{
+    <button>
+        <a href="/CreateArticle" asp-controller="article" asp-action="CreateArticle"><i class='bx bxs-plus-circle'></i></a>
+    </button>
+}
+
+@code {
+    protected bool IsUserAuthenticated { get; private set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var isAuthenticated = await AuthService.IsUserAuthenticated();
+        IsUserAuthenticated = isAuthenticated;
+
+    }
+}

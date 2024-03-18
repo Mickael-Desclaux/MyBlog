@@ -21,6 +21,5 @@ public class LoginBase : ComponentBase
         }
         
         NavigationManager.NavigateTo("/");
-        StateHasChanged();
     }
 }

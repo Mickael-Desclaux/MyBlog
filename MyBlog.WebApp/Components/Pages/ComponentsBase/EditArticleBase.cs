@@ -9,7 +9,9 @@ public class EditArticleBase : ComponentBase
     #region Statement
 
     [Inject] private ArticleService ArticleService { get; init; } = default!;
-    
+
+    [Inject] protected NavigationManager NavigationManager { get; set; } = default!;
+
     protected string NewQuote = string.Empty;
     
     public static Article Article = new();
@@ -70,6 +72,8 @@ public class EditArticleBase : ComponentBase
         }
 
         await ArticleService.UpdateArticleAsync(Article);
+
+        NavigationManager.NavigateTo("/articles");
     }
     
     protected void AddQuote()
